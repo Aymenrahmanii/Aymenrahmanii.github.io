@@ -4,501 +4,706 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aymen Rahmani | Data Science & Machine Learning Engineer</title>
+    <title>Aymen Rahmani — Machine Learning & Data Science Engineer</title>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+
+    <!-- Google Fonts: Instrument Serif, Plus Jakarta Sans, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: {
+                            DEFAULT: '#0C0D0E',
+                            surface: '#16181A',
+                            border: '#24272A',
+                            hover: '#2E3236'
+                        },
+                        accent: {
+                            blue: '#38BDF8',
+                            amber: '#F59E0B',
+                            green: '#22C55E'
+                        },
+                        text: {
+                            primary: '#E1E4E8',
+                            muted: '#94A3B8',
+                            dim: '#64748B'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Instrument Serif"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            background-color: #0C0D0E;
+            color: #E1E4E8;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Hairline grid pattern overlay */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image:
+                linear-gradient(to right, rgba(36, 39, 42, 0.4) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(36, 39, 42, 0.4) 1px, transparent 1px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0C0D0E;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #24272A;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #38BDF8;
         }
     </style>
 </head>
 
-<body class="bg-slate-900 text-slate-100 antialiased selection:bg-cyan-500 selection:text-white">
+<body
+    class="bg-obsidian text-text-primary antialiased bg-grid-pattern selection:bg-accent-blue/30 selection:text-accent-blue">
 
-    <!-- Navigation Bar -->
-    <nav class="fixed top-0 w-full bg-slate-900/80 backdrop-blur-md z-50 border-b border-slate-800">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold tracking-wider text-cyan-400">AYMEN<span
-                    class="text-slate-100">.RAHMANI</span></a>
-            <div class="hidden md:flex space-x-6 text-sm font-medium text-slate-300">
-                <a href="#about" class="hover:text-cyan-400 transition">About</a>
-                <a href="#projects" class="hover:text-cyan-400 transition">Projects</a>
-                <a href="#experience" class="hover:text-cyan-400 transition">Experience</a>
-                <a href="#skills" class="hover:text-cyan-400 transition">Skills</a>
-                <a href="#certifications" class="hover:text-cyan-400 transition">Certifications</a>
-                <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
-            </div>
-            <a href="mailto:aymen.rahmani@esprit.tn"
-                class="hidden sm:inline-block px-4 py-2 text-xs font-semibold rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 transition">Get
-                in Touch</a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center pt-24 pb-12 px-6">
-        <div class="max-w-5xl mx-auto space-y-6">
-            <div
-                class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold">
-                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                <span>Open for ML & Data Science Opportunities</span>
-            </div>
-            <h1 class="text-5xl sm:text-7xl font-extrabold tracking-tight">
-                Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">Aymen
+    <!-- Top Navigation -->
+    <header class="fixed top-0 w-full bg-obsidian/90 backdrop-blur-md z-50 border-b border-obsidian-border">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3 group">
+                <span
+                    class="font-serif text-2xl italic text-text-primary group-hover:text-accent-blue transition-colors">Aymen
                     Rahmani</span>
-            </h1>
-            <h2 class="text-2xl sm:text-3xl text-slate-400 font-medium">
-                Data Science & Machine Learning Engineer
-            </h2>
-            <p class="text-slate-400 text-lg max-w-2xl leading-relaxed">
-                Specializing in <span class="text-slate-200 font-semibold">Generative AI, RAG Pipelines, Multi-Agent
-                    Systems, Computer Vision,</span> and <span class="text-slate-200 font-semibold">MLOps</span>.
-                Engineering end-to-end intelligent systems backed by scalable backend infrastructures.
-            </p>
-            <div class="flex flex-wrap gap-4 pt-4">
-                <a href="https://github.com/Aymenrahmanii" target="_blank"
-                    class="flex items-center gap-2 px-5 py-3 rounded-lg bg-slate-800 border border-slate-700 hover:border-cyan-500 transition text-sm font-semibold">
-                    <i class="fab font-xl fa-github"></i> GitHub Profile
-                </a>
-                <a href="https://www.linkedin.com/in/aymen-rahmani-97b9b6271/" target="_blank"
-                    class="flex items-center gap-2 px-5 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 transition text-sm font-semibold text-white">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="https://leetcode.com/u/luxman251/" target="_blank"
-                    class="flex items-center gap-2 px-5 py-3 rounded-lg bg-amber-600/20 text-amber-400 border border-amber-500/40 hover:bg-amber-600/30 transition text-sm font-semibold">
-                    <i class="fas fa-code"></i> LeetCode Profile
-                </a>
-            </div>
-        </div>
-    </section>
+                <span
+                    class="font-mono text-xs text-accent-blue px-2 py-0.5 rounded bg-accent-blue/10 border border-accent-blue/20">ML.DS.01</span>
+            </a>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-slate-950/50 border-t border-slate-800/60 px-6">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl font-bold text-slate-100 mb-8 border-l-4 border-cyan-400 pl-4">About Me</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="md:col-span-2 space-y-4 text-slate-300 leading-relaxed">
-                    <p>
-                        I am currently pursuing my Engineering degree in Software Engineering at <strong>Esprit School
-                            of Engineering</strong> (Expected 2026), holding a Bachelor's Degree (Licence) in Embedded
-                        Systems from the <strong>Higher Institute of Computer Science</strong>.
+            <nav class="hidden md:flex items-center space-x-8 text-xs font-mono tracking-wider text-text-muted">
+                <a href="#work" class="hover:text-text-primary transition-colors">// WORK</a>
+                <a href="#stack" class="hover:text-text-primary transition-colors">// STACK</a>
+                <a href="#timeline" class="hover:text-text-primary transition-colors">// TIMELINE</a>
+                <a href="#certs" class="hover:text-text-primary transition-colors">// CREDENTIALS</a>
+            </nav>
+
+            <button onclick="copyEmail()"
+                class="font-mono text-xs px-3.5 py-1.5 rounded-lg border border-obsidian-border bg-obsidian-surface hover:border-accent-blue/50 text-text-primary transition-all flex items-center space-x-2">
+                <i class="fa-regular fa-copy text-accent-blue"></i>
+                <span id="copy-btn-text">aymen.rahmani@esprit.tn</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-6 pt-28 pb-20 space-y-28">
+
+        <!-- HERO SECTION (Split Screen Asymmetric) -->
+        <section class="grid lg:grid-cols-12 gap-12 items-center pt-8">
+            <!-- Left Editorial Text -->
+            <div class="lg:col-span-7 space-y-8">
+                <div
+                    class="inline-flex items-center space-x-2.5 px-3 py-1 rounded-full bg-obsidian-surface border border-obsidian-border">
+                    <span class="w-2 h-2 rounded-full bg-accent-green animate-ping"></span>
+                    <span class="w-2 h-2 rounded-full bg-accent-green"></span>
+                    <span class="font-mono text-xs text-text-muted uppercase tracking-wider">Available for ML & Data
+                        Science Roles</span>
+                </div>
+
+                <div class="space-y-4">
+                    <h1 class="font-serif text-5xl sm:text-7xl leading-[1.05] text-text-primary">
+                        Engineering <em class="italic text-accent-blue">Autonomous AI</em> & Production ML Systems.
+                    </h1>
+                    <p class="text-lg text-text-muted leading-relaxed max-w-2xl font-light">
+                        Software Engineering candidate at <strong class="text-text-primary font-medium">Esprit</strong>
+                        specializing in Generative AI, RAG Pipelines, Vision Transformers, and MLOps. Designing
+                        resilient backend microservices for real-time model inference.
                     </p>
-                    <p>
-                        My expertise spans developing state-of-the-art NLP models, building retrieval-augmented
-                        generation (RAG) frameworks, fine-tuning Vision Transformers (ViT), and deploying real-time ML
-                        inference services integrated with modern web architectures (FastAPI, Flask, Spring Boot).
-                    </p>
-                    <div class="pt-4 grid grid-cols-2 gap-4 text-sm">
-                        <div class="p-3 bg-slate-800/50 rounded-lg border border-slate-800">
-                            <span class="text-xs text-slate-400 uppercase tracking-wider block">Location</span>
-                            <span class="font-semibold text-slate-200">Tunis, Tunisia</span>
-                        </div>
-                        <div class="p-3 bg-slate-800/50 rounded-lg border border-slate-800">
-                            <span class="text-xs text-slate-400 uppercase tracking-wider block">Languages</span>
-                            <span class="font-semibold text-slate-200">Arabic (Native), English (C1), French (B2),
-                                German (B2)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-slate-800/30 border border-slate-800 p-6 rounded-xl space-y-4">
-                    <h3 class="text-lg font-semibold text-cyan-400">Quick Stats</h3>
-                    <ul class="space-y-3 text-sm text-slate-300">
-                        <li class="flex justify-between border-b border-slate-800 pb-2"><span>GitHub Repos:</span> <span
-                                class="font-bold text-white">13+</span></li>
-                        <li class="flex justify-between border-b border-slate-800 pb-2"><span>NVIDIA Certs:</span> <span
-                                class="font-bold text-white">4 DLI Certs</span></li>
-                        <li class="flex justify-between border-b border-slate-800 pb-2"><span>English Level:</span>
-                            <span class="font-bold text-white">CEFR C1 (Advanced)</span></li>
-                        <li class="flex justify-between border-b border-slate-800 pb-2"><span>German Level:</span> <span
-                                class="font-bold text-white">TestDaF B2</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 px-6">
-        <div class="max-w-5xl mx-auto space-y-12">
-            <div class="flex justify-between items-end">
-                <div>
-                    <h2 class="text-3xl font-bold text-slate-100 border-l-4 border-cyan-400 pl-4">Featured Projects</h2>
-                    <p class="text-slate-400 mt-2">Selection of AI/ML engineering work and open-source repos.</p>
-                </div>
-                <a href="https://github.com/Aymenrahmanii" target="_blank"
-                    class="text-cyan-400 hover:underline text-sm font-semibold">View all GitHub Repos &rarr;</a>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- Project 1: Legal Contract Auditor -->
-                <div
-                    class="bg-slate-800/40 border border-slate-800 hover:border-slate-700 p-6 rounded-xl space-y-4 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-slate-100">AI Legal Contract Auditor</h3>
-                            <a href="https://github.com/Aymenrahmanii/Legal_Contract_Auditor_RAG" target="_blank"
-                                class="text-slate-400 hover:text-white"><i class="fab fa-github text-xl"></i></a>
-                        </div>
-                        <p class="text-xs text-cyan-400 font-mono mb-3">RAG • NLP • Legal Tech</p>
-                        <p class="text-slate-300 text-sm leading-relaxed">
-                            NLP system parsing legal agreements, extracting key clauses, and pinpointing compliance
-                            risks using LLMs to translate complex terminology into actionable summaries.
-                        </p>
-                    </div>
-                    <div class="flex flex-wrap gap-2 pt-4">
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">Python</span>
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">LLMs</span>
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">RAG</span>
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">Prompt Engineering</span>
-                    </div>
                 </div>
 
-                <!-- Project 2: DeepFake Detection -->
-                <div
-                    class="bg-slate-800/40 border border-slate-800 hover:border-slate-700 p-6 rounded-xl space-y-4 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-slate-100">DeepFake Detection Platform</h3>
-                            <span
-                                class="px-2 py-0.5 text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded">95%
-                                Accuracy</span>
-                        </div>
-                        <p class="text-xs text-cyan-400 font-mono mb-3">Multimodal CV • Transformers • Hackathon</p>
-                        <p class="text-slate-300 text-sm leading-relaxed">
-                            Multimodal platform detecting AI-generated media (images, videos, audio, text) integrating
-                            fine-tuned Vision Transformer (ViT-L/16) and Hugging Face's VideoMAE models.
-                        </p>
-                    </div>
-                    <div class="flex flex-wrap gap-2 pt-4">
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">PyTorch</span>
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">ViT-L/16</span>
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">VideoMAE</span>
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">Hugging Face</span>
-                    </div>
-                </div>
-
-                <!-- Project 3: Email Classification Backend/Frontend -->
-                <div
-                    class="bg-slate-800/40 border border-slate-800 hover:border-slate-700 p-6 rounded-xl space-y-4 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-slate-100">Real-Time Email ML Classifier</h3>
-                            <div class="flex gap-2">
-                                <a href="https://github.com/Aymenrahmanii/EmailFilter_ML_BackEnd" target="_blank"
-                                    class="text-slate-400 hover:text-white" title="Backend Repo"><i
-                                        class="fab fa-github text-xl"></i></a>
-                                <a href="https://github.com/Aymenrahmanii/EmailFilter_ML_FrontEnd" target="_blank"
-                                    class="text-slate-400 hover:text-white" title="Frontend Repo"><i
-                                        class="fab fa-github text-xl"></i></a>
-                            </div>
-                        </div>
-                        <p class="text-xs text-cyan-400 font-mono mb-3">XGBoost • REST APIs • Spring Boot / Flask</p>
-                        <p class="text-slate-300 text-sm leading-relaxed">
-                            Deployed XGBoost classifier reaching 90% accuracy and 91 F1-score to classify emails (valid,
-                            risky, bounce) coupled with REST API microservices for real-time inference.
-                        </p>
-                    </div>
-                    <div class="flex flex-wrap gap-2 pt-4">
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">Python</span>
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">XGBoost</span>
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">Spring Boot</span>
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">FastAPI / Flask</span>
-                    </div>
-                </div>
-
-                <!-- Project 4: Multi-Modal Multi-Agent Financial Framework -->
-                <div
-                    class="bg-slate-800/40 border border-slate-800 hover:border-slate-700 p-6 rounded-xl space-y-4 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-slate-100">Multi-Agent Financial Framework</h3>
-                        </div>
-                        <p class="text-xs text-cyan-400 font-mono mb-3">Multi-Agent Systems • FinTech • GenAI</p>
-                        <p class="text-slate-300 text-sm leading-relaxed">
-                            Confidential multi-agent AI system engineered for major currency analysis and algorithmic
-                            alpha generation by synthesizing macro events, news sentiment, visual charts, and price
-                            indicators.
-                        </p>
-                    </div>
-                    <div class="flex flex-wrap gap-2 pt-4">
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">Python</span>
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">Multi-Agent</span>
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">LLMs</span>
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">Prompt Engineering</span>
-                    </div>
-                </div>
-
-                <!-- Project 5: Socratic AI Tutor & MLOps Projects -->
-                <div
-                    class="bg-slate-800/40 border border-slate-800 hover:border-slate-700 p-6 rounded-xl space-y-4 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-slate-100">Socratic AI Tutor & MLOps Pipeline</h3>
-                            <div class="flex gap-2">
-                                <a href="https://github.com/Aymenrahmanii/Socratic_Tutor" target="_blank"
-                                    class="text-slate-400 hover:text-white"><i class="fab fa-github text-xl"></i></a>
-                                <a href="https://github.com/Aymenrahmanii/MLops_project" target="_blank"
-                                    class="text-slate-400 hover:text-white"><i class="fab fa-github text-xl"></i></a>
-                            </div>
-                        </div>
-                        <p class="text-xs text-cyan-400 font-mono mb-3">LLMs • MLOps • Docker • Workflows</p>
-                        <p class="text-slate-300 text-sm leading-relaxed">
-                            An interactive conversational AI tutor built around Socratic questioning methodologies
-                            alongside MLOps pipelines managing model containerization and CI/CD workflows.
-                        </p>
-                    </div>
-                    <div class="flex flex-wrap gap-2 pt-4">
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">Python</span>
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">Docker</span>
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">MLOps</span>
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">LLMs</span>
-                    </div>
-                </div>
-
-                <!-- Project 6: Breast Cancer ML Replication -->
-                <div
-                    class="bg-slate-800/40 border border-slate-800 hover:border-slate-700 p-6 rounded-xl space-y-4 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-bold text-slate-100">Breast Cancer ML Replication</h3>
-                            <a href="https://github.com/Aymenrahmanii/ML_Breast_Cancer" target="_blank"
-                                class="text-slate-400 hover:text-white"><i class="fab fa-github text-xl"></i></a>
-                        </div>
-                        <p class="text-xs text-cyan-400 font-mono mb-3">Healthcare ML • Imbalanced Data • SMOTE</p>
-                        <p class="text-slate-300 text-sm leading-relaxed">
-                            Replication of a medical ML research study, solving class imbalance via SMOTE,
-                            cross-validation, hypothesis testing, and evaluating performance across scaling techniques.
-                        </p>
-                    </div>
-                    <div class="flex flex-wrap gap-2 pt-4">
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">Scikit-learn</span>
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">Pandas</span>
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">SMOTE</span>
-                        <span class="px-2 py-1 text-xs rounded bg-slate-900 text-slate-300">Jupyter</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-slate-950/50 border-t border-slate-800/60 px-6">
-        <div class="max-w-5xl mx-auto space-y-8">
-            <h2 class="text-3xl font-bold text-slate-100 border-l-4 border-cyan-400 pl-4">Work Experience</h2>
-            <div class="space-y-6">
-                <!-- Role 1 -->
-                <div class="bg-slate-800/30 border border-slate-800 p-6 rounded-xl space-y-3">
-                    <div class="flex flex-wrap justify-between items-center gap-2">
-                        <div>
-                            <h3 class="text-lg font-bold text-white">Machine Learning Intern</h3>
-                            <p class="text-slate-400 text-sm">Web Media International | Email Classification Project</p>
-                        </div>
-                        <span
-                            class="text-xs font-semibold px-3 py-1 bg-cyan-500/10 text-cyan-400 rounded-full border border-cyan-500/20">Summer
-                            2025</span>
-                    </div>
-                    <ul class="list-disc list-inside text-sm text-slate-300 space-y-2 leading-relaxed">
-                        <li>Built an XGBoost classification model achieving <strong>90% accuracy and 91
-                                F1-score</strong> to categorize incoming emails as valid, risky, or bounce.</li>
-                        <li>Architected REST APIs connecting Spring Boot backend with Flask/FastAPI microservices for
-                            real-time ML inference.</li>
-                        <li><span class="text-slate-400">Tech Stack:</span> Python, XGBoost, Flask, FastAPI, Spring
-                            Boot, MySQL.</li>
-                    </ul>
-                </div>
-
-                <!-- Role 2 -->
-                <div class="bg-slate-800/30 border border-slate-800 p-6 rounded-xl space-y-3">
-                    <div class="flex flex-wrap justify-between items-center gap-2">
-                        <div>
-                            <h3 class="text-lg font-bold text-white">Web Development Intern</h3>
-                            <p class="text-slate-400 text-sm">Auto-école Elite Lafayette | Platform Management</p>
-                        </div>
-                        <span class="text-xs font-semibold px-3 py-1 bg-slate-800 text-slate-400 rounded-full">Summer
-                            2024</span>
-                    </div>
-                    <ul class="list-disc list-inside text-sm text-slate-300 space-y-2 leading-relaxed">
-                        <li>Engineered a full-stack platform for driving candidate exam scheduling, progress tracking,
-                            and driving history management.</li>
-                        <li>Designed authenticated dashboards for instructors to oversee candidate curricula and secure
-                            database integrations.</li>
-                        <li><span class="text-slate-400">Tech Stack:</span> Angular, Spring Boot, MySQL, Firebase.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 px-6">
-        <div class="max-w-5xl mx-auto space-y-8">
-            <h2 class="text-3xl font-bold text-slate-100 border-l-4 border-cyan-400 pl-4">Technical Stack & Skills</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- AI / GenAI -->
-                <div class="bg-slate-800/30 border border-slate-800 p-5 rounded-xl space-y-3">
-                    <div class="text-cyan-400 font-semibold text-sm flex items-center gap-2"><i
-                            class="fas fa-brain"></i> GenAI & LLM Architectures</div>
-                    <div class="flex flex-wrap gap-2 text-xs">
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">LLMs Fine-tuning</span>
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">RAG Pipelines</span>
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">Prompt Engineering</span>
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">Multi-Agent Systems</span>
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">Vector DBs</span>
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">Vision Transformers (ViT)</span>
-                    </div>
-                </div>
-
-                <!-- Machine Learning & Data Science -->
-                <div class="bg-slate-800/30 border border-slate-800 p-5 rounded-xl space-y-3">
-                    <div class="text-cyan-400 font-semibold text-sm flex items-center gap-2"><i
-                            class="fas fa-chart-line"></i> Data Science & ML</div>
-                    <div class="flex flex-wrap gap-2 text-xs">
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">PyTorch</span>
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">TensorFlow</span>
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">Scikit-learn</span>
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">XGBoost</span>
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">Pandas / NumPy</span>
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">Statsmodels</span>
-                    </div>
-                </div>
-
-                <!-- Programming & Web Deployment -->
-                <div class="bg-slate-800/30 border border-slate-800 p-5 rounded-xl space-y-3">
-                    <div class="text-cyan-400 font-semibold text-sm flex items-center gap-2"><i class="fas fa-code"></i>
-                        Languages & Deployment</div>
-                    <div class="flex flex-wrap gap-2 text-xs">
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">Python</span>
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">Java</span>
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">C / C++</span>
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">FastAPI / Flask</span>
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">Spring Boot</span>
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">REST APIs</span>
-                    </div>
-                </div>
-
-                <!-- Big Data & MLOps -->
-                <div class="bg-slate-800/30 border border-slate-800 p-5 rounded-xl space-y-3">
-                    <div class="text-cyan-400 font-semibold text-sm flex items-center gap-2"><i
-                            class="fas fa-server"></i> Big Data & MLOps</div>
-                    <div class="flex flex-wrap gap-2 text-xs">
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">Docker</span>
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">Hadoop / Cloudera</span>
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">Git / GitHub</span>
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">MySQL</span>
-                        <span class="px-2.5 py-1 bg-slate-800 rounded text-slate-200">Power BI</span>
-                    </div>
-                </div>
-
-                <!-- Problem Solving / LeetCode -->
-                <div class="bg-slate-800/30 border border-slate-800 p-5 rounded-xl space-y-3">
-                    <div class="text-amber-400 font-semibold text-sm flex items-center gap-2"><i
-                            class="fas fa-terminal"></i> Problem Solving</div>
-                    <p class="text-xs text-slate-300">Active algorithmic problem solver on LeetCode focused on Data
-                        Structures & Dynamic Programming.</p>
+                <!-- Action Pills -->
+                <div class="flex flex-wrap items-center gap-3 pt-2">
+                    <a href="https://github.com/Aymenrahmanii" target="_blank"
+                        class="px-4 py-2.5 rounded-lg bg-obsidian-surface border border-obsidian-border hover:border-text-primary transition-all flex items-center space-x-2.5 text-xs font-mono">
+                        <i class="fa-brands fa-github text-base text-text-primary"></i>
+                        <span>Aymenrahmanii</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/aymen-rahmani-97b9b6271/" target="_blank"
+                        class="px-4 py-2.5 rounded-lg bg-obsidian-surface border border-obsidian-border hover:border-accent-blue transition-all flex items-center space-x-2.5 text-xs font-mono text-accent-blue">
+                        <i class="fa-brands fa-linkedin text-base"></i>
+                        <span>LinkedIn</span>
+                    </a>
                     <a href="https://leetcode.com/u/luxman251/" target="_blank"
-                        class="inline-block text-xs font-semibold text-amber-400 hover:underline">
-                        @luxman251 on LeetCode &rarr;
+                        class="px-4 py-2.5 rounded-lg bg-obsidian-surface border border-obsidian-border hover:border-accent-amber transition-all flex items-center space-x-2.5 text-xs font-mono text-accent-amber">
+                        <i class="fa-solid fa-code text-base"></i>
+                        <span>LeetCode @luxman251</span>
                     </a>
                 </div>
+            </div>
 
-                <!-- Spoken Languages -->
-                <div class="bg-slate-800/30 border border-slate-800 p-5 rounded-xl space-y-3">
-                    <div class="text-cyan-400 font-semibold text-sm flex items-center gap-2"><i
-                            class="fas fa-globe"></i> Languages</div>
-                    <ul class="text-xs text-slate-300 space-y-1">
-                        <li><strong>Arabic:</strong> Native</li>
-                        <li><strong>English:</strong> C1 (CEFR Advanced)</li>
-                        <li><strong>French:</strong> B2</li>
-                        <li><strong>German:</strong> B2 (TestDaF Certified)</li>
+            <!-- Right Interactive Terminal Widget -->
+            <div class="lg:col-span-5">
+                <div class="rounded-xl border border-obsidian-border bg-obsidian-surface overflow-hidden shadow-2xl">
+                    <!-- Terminal Header -->
+                    <div
+                        class="px-4 py-3 border-b border-obsidian-border bg-obsidian flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                        </div>
+                        <span class="font-mono text-xs text-text-dim">system_status.sh — zsh</span>
+                        <div class="w-12"></div>
+                    </div>
+
+                    <!-- Terminal Controls -->
+                    <div class="flex border-b border-obsidian-border font-mono text-xs bg-obsidian/50">
+                        <button onclick="switchTerminalTab('metrics')" id="tab-metrics"
+                            class="flex-1 py-2 px-3 border-r border-obsidian-border text-accent-blue bg-obsidian-surface font-semibold">--metrics</button>
+                        <button onclick="switchTerminalTab('stack')" id="tab-stack"
+                            class="flex-1 py-2 px-3 border-r border-obsidian-border text-text-muted hover:text-text-primary">--stack</button>
+                        <button onclick="switchTerminalTab('languages')" id="tab-languages"
+                            class="flex-1 py-2 px-3 text-text-muted hover:text-text-primary">--languages</button>
+                    </div>
+
+                    <!-- Terminal Window Content -->
+                    <div class="p-5 font-mono text-xs space-y-4 min-h-[260px] bg-obsidian/90">
+                        <div class="flex items-center space-x-2 text-text-dim">
+                            <span class="text-accent-green">➜</span>
+                            <span class="text-accent-blue">~</span>
+                            <span>status --user aymen_rahmani</span>
+                        </div>
+
+                        <!-- Tab 1: Metrics Content -->
+                        <div id="terminal-metrics-content" class="space-y-2.5 text-text-muted">
+                            <div class="flex justify-between border-b border-obsidian-border/50 pb-1.5">
+                                <span>DeepFake Detection Acc:</span>
+                                <span class="text-accent-green font-semibold">95.0% (ViT-L/16)</span>
+                            </div>
+                            <div class="flex justify-between border-b border-obsidian-border/50 pb-1.5">
+                                <span>Email ML Classifier:</span>
+                                <span class="text-accent-blue font-semibold">90.0% Acc / 91 F1</span>
+                            </div>
+                            <div class="flex justify-between border-b border-obsidian-border/50 pb-1.5">
+                                <span>NVIDIA DLI Certifications:</span>
+                                <span class="text-accent-amber font-semibold">4 Specializations</span>
+                            </div>
+                            <div class="flex justify-between border-b border-obsidian-border/50 pb-1.5">
+                                <span>Nutritional Dataset Vectorized:</span>
+                                <span class="text-text-primary font-semibold">644,126 Items</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Degree Status:</span>
+                                <span class="text-text-primary">Software Eng (2026)</span>
+                            </div>
+                        </div>
+
+                        <!-- Tab 2: Stack Content (Hidden by default) -->
+                        <div id="terminal-stack-content" class="space-y-2 text-text-muted hidden">
+                            <p class="text-text-primary">// Core Engineering Stack</p>
+                            <p><span class="text-accent-blue">Frameworks:</span> PyTorch, TensorFlow, Scikit-learn,
+                                XGBoost</p>
+                            <p><span class="text-accent-amber">GenAI:</span> Transformers, RAG, Multi-Agent Systems,
+                                Flow AI</p>
+                            <p><span class="text-accent-green">Backend:</span> FastAPI, Flask, Spring Boot, MySQL, REST
+                                APIs</p>
+                            <p><span class="text-text-primary">MLOps:</span> Docker, Hadoop, Cloudera, Git</p>
+                        </div>
+
+                        <!-- Tab 3: Languages Content (Hidden by default) -->
+                        <div id="terminal-languages-content" class="space-y-2 text-text-muted hidden">
+                            <div class="flex justify-between"><span>English:</span><span
+                                    class="text-accent-blue font-semibold">C1 Advanced (Imperial UK)</span></div>
+                            <div class="flex justify-between"><span>German:</span><span
+                                    class="text-accent-amber font-semibold">B2 (TestDaF Certified)</span></div>
+                            <div class="flex justify-between"><span>French:</span><span class="text-text-primary">B2
+                                    Professional</span></div>
+                            <div class="flex justify-between"><span>Arabic:</span><span
+                                    class="text-accent-green">Native</span></div>
+                        </div>
+
+                        <div class="pt-2 flex items-center space-x-2 text-text-dim">
+                            <span class="text-accent-green">➜</span>
+                            <span class="text-accent-blue">~</span>
+                            <span class="animate-pulse text-accent-blue">█</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WORK SECTION (Asymmetric Bento Grid) -->
+        <section id="work" class="space-y-10">
+            <div
+                class="flex flex-col md:flex-row md:items-end justify-between border-b border-obsidian-border pb-6 gap-4">
+                <div>
+                    <span class="font-mono text-xs text-accent-blue uppercase tracking-wider block mb-1">// FEATURED
+                        ENGINEERING REPOS</span>
+                    <h2 class="font-serif text-4xl text-text-primary">Architectural Highlights</h2>
+                </div>
+                <p class="text-xs font-mono text-text-dim">Production models, RAG systems & full-stack ML microservices.
+                </p>
+            </div>
+
+            <!-- Bento Grid Container -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+                <!-- Bento Item 1: Hero Project (8 columns) -->
+                <div
+                    class="md:col-span-8 bg-obsidian-surface border border-obsidian-border rounded-xl p-8 hover:border-accent-blue/40 transition-all flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <span
+                                class="px-3 py-1 rounded-full bg-accent-green/10 border border-accent-green/30 font-mono text-xs text-accent-green">
+                                95% ACCURACY — MULTIMODAL
+                            </span>
+                            <span class="font-mono text-xs text-text-dim">Hackathon Project</span>
+                        </div>
+                        <h3
+                            class="font-serif text-3xl text-text-primary group-hover:text-accent-blue transition-colors">
+                            DeepFake Detection Platform
+                        </h3>
+                        <p class="text-text-muted text-sm leading-relaxed max-w-2xl font-light">
+                            Co-developed a deep learning detector targeting AI-generated images, video, audio, and
+                            synthetic text. Fine-tuned Vision Transformer (<strong
+                                class="text-text-primary">ViT-L/16</strong>) and integrated Hugging Face's <strong
+                                class="text-text-primary">VideoMAE</strong> architecture for temporal sequence
+                            verification.
+                        </p>
+                    </div>
+
+                    <div class="pt-8 space-y-4">
+                        <div class="flex flex-wrap gap-2 font-mono text-xs">
+                            <span
+                                class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border text-text-muted">PyTorch</span>
+                            <span
+                                class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border text-text-muted">ViT-L/16</span>
+                            <span
+                                class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border text-text-muted">VideoMAE</span>
+                            <span
+                                class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border text-text-muted">Hugging
+                                Face</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bento Item 2: Legal Contract Auditor (4 columns) -->
+                <div
+                    class="md:col-span-4 bg-obsidian-surface border border-obsidian-border rounded-xl p-6 hover:border-accent-blue/40 transition-all flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span
+                                class="px-2.5 py-1 rounded bg-accent-blue/10 border border-accent-blue/30 font-mono text-xs text-accent-blue">RAG
+                                & NLP</span>
+                            <a href="https://github.com/Aymenrahmanii/Legal_Contract_Auditor_RAG" target="_blank"
+                                class="text-text-dim hover:text-text-primary"><i
+                                    class="fa-brands fa-github text-lg"></i></a>
+                        </div>
+                        <h3
+                            class="font-serif text-2xl text-text-primary group-hover:text-accent-blue transition-colors">
+                            AI Legal Contract Auditor
+                        </h3>
+                        <p class="text-text-muted text-xs leading-relaxed font-light">
+                            Parses legal agreements, extracts high-risk clauses, and synthesizes structured compliance
+                            summaries using Retrieval-Augmented Generation.
+                        </p>
+                    </div>
+
+                    <!-- Inline Code Snippet Preview -->
+                    <div
+                        class="mt-4 p-3 rounded bg-obsidian border border-obsidian-border font-mono text-[11px] text-text-muted space-y-1">
+                        <div class="text-accent-amber">{"risk": "HIGH_LIABILITY",</div>
+                        <div class="pl-3">"clause": "Indemnification §4.2",</div>
+                        <div class="pl-3 text-accent-green">"actionable_summary": "Passed"}</div>
+                    </div>
+                </div>
+
+                <!-- Bento Item 3: Real-Time Email ML Classifier (4 columns) -->
+                <div
+                    class="md:col-span-4 bg-obsidian-surface border border-obsidian-border rounded-xl p-6 hover:border-accent-blue/40 transition-all flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span
+                                class="px-2.5 py-1 rounded bg-accent-amber/10 border border-accent-amber/30 font-mono text-xs text-accent-amber">90%
+                                ACCURACY | 91 F1</span>
+                            <div class="flex space-x-2">
+                                <a href="https://github.com/Aymenrahmanii/EmailFilter_ML_BackEnd" target="_blank"
+                                    class="text-text-dim hover:text-text-primary" title="Backend Repo"><i
+                                        class="fa-brands fa-github"></i></a>
+                                <a href="https://github.com/Aymenrahmanii/EmailFilter_ML_FrontEnd" target="_blank"
+                                    class="text-text-dim hover:text-text-primary" title="Frontend Repo"><i
+                                        class="fa-solid fa-code-branch"></i></a>
+                            </div>
+                        </div>
+                        <h3
+                            class="font-serif text-2xl text-text-primary group-hover:text-accent-blue transition-colors">
+                            Real-Time Email ML Classifier
+                        </h3>
+                        <p class="text-text-muted text-xs leading-relaxed font-light">
+                            XGBoost pipeline deployed with Spring Boot & Flask microservices to filter valid, risky, and
+                            bounce emails in real-time.
+                        </p>
+                    </div>
+
+                    <!-- Pipeline Flow Indicator -->
+                    <div
+                        class="mt-4 pt-3 border-t border-obsidian-border/60 font-mono text-[11px] text-text-dim flex items-center justify-between">
+                        <span>Spring Boot</span>
+                        <span class="text-accent-blue">➔</span>
+                        <span>FastAPI</span>
+                        <span class="text-accent-blue">➔</span>
+                        <span class="text-text-primary">XGBoost</span>
+                    </div>
+                </div>
+
+                <!-- Bento Item 4: Multi-Agent Financial Framework (4 columns) -->
+                <div
+                    class="md:col-span-4 bg-obsidian-surface border border-obsidian-border rounded-xl p-6 hover:border-accent-blue/40 transition-all flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <span
+                            class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border font-mono text-xs text-text-muted">MULTI-AGENT
+                            AI</span>
+                        <h3
+                            class="font-serif text-2xl text-text-primary group-hover:text-accent-blue transition-colors">
+                            Multi-Agent Financial Framework
+                        </h3>
+                        <p class="text-text-muted text-xs leading-relaxed font-light">
+                            Autonomous multi-agent architecture synthesizing macro events, news sentiment, technical
+                            chart patterns, and price indicators for alpha generation.
+                        </p>
+                    </div>
+                    <div class="pt-4 flex flex-wrap gap-1.5 font-mono text-[10px] text-text-dim">
+                        <span>#LLMs</span> <span>#MultiAgent</span> <span>#FinTech</span>
+                    </div>
+                </div>
+
+                <!-- Bento Item 5: Socratic Tutor & MLOps (4 columns) -->
+                <div
+                    class="md:col-span-4 bg-obsidian-surface border border-obsidian-border rounded-xl p-6 hover:border-accent-blue/40 transition-all flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span
+                                class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border font-mono text-xs text-text-muted">MLOPS
+                                & PIPELINES</span>
+                            <div class="flex space-x-2">
+                                <a href="https://github.com/Aymenrahmanii/Socratic_Tutor" target="_blank"
+                                    class="text-text-dim hover:text-text-primary"><i
+                                        class="fa-brands fa-github"></i></a>
+                                <a href="https://github.com/Aymenrahmanii/MLops_project" target="_blank"
+                                    class="text-text-dim hover:text-text-primary"><i
+                                        class="fa-solid fa-box-archive"></i></a>
+                            </div>
+                        </div>
+                        <h3
+                            class="font-serif text-2xl text-text-primary group-hover:text-accent-blue transition-colors">
+                            Socratic Tutor & MLOps System
+                        </h3>
+                        <p class="text-text-muted text-xs leading-relaxed font-light">
+                            Conversational AI system applying Socratic questioning alongside containerized MLOps
+                            pipelines managing model lifecycle and Docker deployments.
+                        </p>
+                    </div>
+                    <div class="pt-4 flex gap-2 font-mono text-xs text-text-dim">
+                        <span class="text-accent-green">● Dockerized</span>
+                        <span class="text-accent-blue">● LLM Pipeline</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- STACK & PROFICIENCY (Structured Matrix) -->
+        <section id="stack" class="space-y-8">
+            <div class="border-b border-obsidian-border pb-6">
+                <span class="font-mono text-xs text-accent-blue uppercase tracking-wider block mb-1">// TECHNICAL
+                    PROFICIENCY</span>
+                <h2 class="font-serif text-4xl text-text-primary">Skills & Engineering Matrix</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- GenAI & LLMs -->
+                <div class="bg-obsidian-surface border border-obsidian-border p-6 rounded-xl space-y-4">
+                    <div class="font-mono text-xs text-accent-blue flex items-center space-x-2">
+                        <i class="fa-solid fa-brain"></i>
+                        <span>GENAI & LLM ARCHITECTURES</span>
+                    </div>
+                    <ul class="space-y-2 text-xs font-mono text-text-muted">
+                        <li class="flex items-center space-x-2"><span class="text-accent-blue">›</span><span>LLM Prompt
+                                Engineering</span></li>
+                        <li class="flex items-center space-x-2"><span class="text-accent-blue">›</span><span>RAG
+                                Pipelines & Vector DBs</span></li>
+                        <li class="flex items-center space-x-2"><span class="text-accent-blue">›</span><span>Multi-Agent
+                                AI Systems</span></li>
+                        <li class="flex items-center space-x-2"><span class="text-accent-blue">›</span><span>Vision
+                                Transformers (ViT)</span></li>
+                        <li class="flex items-center space-x-2"><span class="text-accent-blue">›</span><span>VideoMAE &
+                                Multimodal CV</span></li>
+                    </ul>
+                </div>
+
+                <!-- Machine Learning & Data -->
+                <div class="bg-obsidian-surface border border-obsidian-border p-6 rounded-xl space-y-4">
+                    <div class="font-mono text-xs text-accent-amber flex items-center space-x-2">
+                        <i class="fa-solid fa-chart-simple"></i>
+                        <span>ML & DATA ENGINEERING</span>
+                    </div>
+                    <ul class="space-y-2 text-xs font-mono text-text-muted">
+                        <li class="flex items-center space-x-2"><span class="text-accent-amber">›</span><span>PyTorch &
+                                TensorFlow</span></li>
+                        <li class="flex items-center space-x-2"><span
+                                class="text-accent-amber">›</span><span>Scikit-learn & XGBoost</span></li>
+                        <li class="flex items-center space-x-2"><span
+                                class="text-accent-amber">›</span><span>Statsmodels (ARIMA/SARIMA)</span></li>
+                        <li class="flex items-center space-x-2"><span class="text-accent-amber">›</span><span>SMOTE &
+                                Imbalanced ML</span></li>
+                        <li class="flex items-center space-x-2"><span class="text-accent-amber">›</span><span>Pandas,
+                                NumPy, Power BI</span></li>
+                    </ul>
+                </div>
+
+                <!-- Backend & Deployment -->
+                <div class="bg-obsidian-surface border border-obsidian-border p-6 rounded-xl space-y-4">
+                    <div class="font-mono text-xs text-accent-green flex items-center space-x-2">
+                        <i class="fa-solid fa-server"></i>
+                        <span>BACKEND & MLOPS</span>
+                    </div>
+                    <ul class="space-y-2 text-xs font-mono text-text-muted">
+                        <li class="flex items-center space-x-2"><span class="text-accent-green">›</span><span>FastAPI &
+                                Flask REST APIs</span></li>
+                        <li class="flex items-center space-x-2"><span class="text-accent-green">›</span><span>Spring
+                                Boot (Java)</span></li>
+                        <li class="flex items-center space-x-2"><span class="text-accent-green">›</span><span>Docker &
+                                Containerization</span></li>
+                        <li class="flex items-center space-x-2"><span class="text-accent-green">›</span><span>Hadoop,
+                                Cloudera, MySQL</span></li>
+                        <li class="flex items-center space-x-2"><span class="text-accent-green">›</span><span>Git,
+                                Angular, Firebase</span></li>
                     </ul>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Certifications Section -->
-    <section id="certifications" class="py-20 bg-slate-950/50 border-t border-slate-800/60 px-6">
-        <div class="max-w-5xl mx-auto space-y-8">
-            <h2 class="text-3xl font-bold text-slate-100 border-l-4 border-cyan-400 pl-4">Certifications & Awards</h2>
-            <div class="grid sm:grid-cols-2 gap-4">
-                <!-- NVIDIA Certs -->
-                <div class="bg-slate-800/30 border border-slate-800 p-5 rounded-xl space-y-2">
-                    <div class="flex items-center gap-2 text-emerald-400 text-sm font-semibold">
-                        <i class="fab fa-nvidia"></i> NVIDIA Deep Learning Institute (DLI)
-                    </div>
-                    <ul class="text-xs text-slate-300 space-y-1 list-disc list-inside">
-                        <li>Building Transformer-Based NLP Applications</li>
-                        <li>Rapid Application Development with LLMs</li>
-                        <li>Building LLM Applications with Prompt Engineering</li>
-                        <li>Evaluation and Light Customization of LLMs</li>
-                    </ul>
+            <!-- Custom LeetCode Stats Banner -->
+            <div
+                class="bg-obsidian-surface border border-obsidian-border p-6 rounded-xl flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="space-y-1 text-center md:text-left">
+                    <div class="font-mono text-xs text-accent-amber uppercase">// ALGORITHMIC PROBLEM SOLVING</div>
+                    <h4 class="font-serif text-2xl text-text-primary">LeetCode Engineering Profile</h4>
+                    <p class="text-xs text-text-muted">Data Structures, Dynamic Programming & Algorithm Optimization.
+                    </p>
+                </div>
+                <a href="https://leetcode.com/u/luxman251/" target="_blank"
+                    class="px-5 py-2.5 rounded-lg bg-obsidian border border-accent-amber/40 hover:border-accent-amber text-accent-amber font-mono text-xs transition-all flex items-center space-x-3">
+                    <i class="fa-solid fa-code text-base"></i>
+                    <span>View Profile @luxman251 &rarr;</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- TIMELINE & CREDENTIALS -->
+        <section id="timeline" class="grid lg:grid-cols-12 gap-12">
+
+            <!-- Left Column: Work & Education Timeline (7 cols) -->
+            <div class="lg:col-span-7 space-y-8">
+                <div class="border-b border-obsidian-border pb-4">
+                    <span class="font-mono text-xs text-accent-blue uppercase tracking-wider block mb-1">//
+                        CHRONOLOGY</span>
+                    <h2 class="font-serif text-3xl text-text-primary">Experience & Education</h2>
                 </div>
 
-                <!-- Hackathons & Awards -->
-                <div class="bg-slate-800/30 border border-slate-800 p-5 rounded-xl space-y-2">
-                    <div class="flex items-center gap-2 text-amber-400 text-sm font-semibold">
-                        <i class="fas fa-trophy"></i> Awards & Hackathons
+                <div class="space-y-8 relative pl-6 border-l border-obsidian-border">
+                    <!-- Item 1 -->
+                    <div class="relative group">
+                        <div
+                            class="absolute -left-[31px] top-1.5 w-2.5 h-2.5 rounded-full bg-accent-blue border-4 border-obsidian">
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-serif text-xl text-text-primary">Machine Learning Intern</h3>
+                                <span class="font-mono text-xs text-accent-blue">Summer 2025</span>
+                            </div>
+                            <p class="font-mono text-xs text-text-dim">Web Media International • Email Classification
+                                System</p>
+                            <p class="text-xs text-text-muted leading-relaxed font-light">
+                                Built an XGBoost model achieving 90% accuracy & 91 F1-score. Connected Spring Boot
+                                microservices with Flask/FastAPI REST endpoints for real-time model inference.
+                            </p>
+                        </div>
                     </div>
-                    <ul class="text-xs text-slate-300 space-y-1">
-                        <li><strong>AI AD AWARD Hackathon:</strong> AFI Group, Esprit, Tunisia Digital Summit (April
-                            2026)</li>
-                        <li><strong>MASSAI AI Summer School:</strong> Mediterranean & African Summer School on AI (June
-                            2025)</li>
-                    </ul>
-                </div>
 
-                <!-- IBM & Kaggle -->
-                <div class="bg-slate-800/30 border border-slate-800 p-5 rounded-xl space-y-2">
-                    <div class="flex items-center gap-2 text-blue-400 text-sm font-semibold">
-                        <i class="fas fa-certificate"></i> IBM & Kaggle Certifications
+                    <!-- Item 2 -->
+                    <div class="relative group">
+                        <div
+                            class="absolute -left-[31px] top-1.5 w-2.5 h-2.5 rounded-full bg-obsidian-border border-4 border-obsidian group-hover:bg-accent-blue transition-colors">
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-serif text-xl text-text-primary">Software Engineering Degree</h3>
+                                <span class="font-mono text-xs text-text-dim">2024 – Expected 2026</span>
+                            </div>
+                            <p class="font-mono text-xs text-text-dim">Esprit School of Engineering • Ariana, Tunis</p>
+                            <p class="text-xs text-text-muted font-light">
+                                Engineering curriculum focused on Software Architecture, Advanced AI Systems, and
+                                Distributed Applications.
+                            </p>
+                        </div>
                     </div>
-                    <ul class="text-xs text-slate-300 space-y-1 list-disc list-inside">
-                        <li>IBM Data Science Tools & Methodology (2025)</li>
-                        <li>Kaggle Intro to Machine Learning & Python (2025)</li>
-                        <li>Agentic AI Training Certificate - IT House / CAG Academy (2026)</li>
-                    </ul>
-                </div>
 
-                <!-- Language Certifications -->
-                <div class="bg-slate-800/30 border border-slate-800 p-5 rounded-xl space-y-2">
-                    <div class="flex items-center gap-2 text-purple-400 text-sm font-semibold">
-                        <i class="fas fa-language"></i> Language Credentials
+                    <!-- Item 3 -->
+                    <div class="relative group">
+                        <div
+                            class="absolute -left-[31px] top-1.5 w-2.5 h-2.5 rounded-full bg-obsidian-border border-4 border-obsidian group-hover:bg-accent-blue transition-colors">
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-serif text-xl text-text-primary">Licence in Embedded Systems</h3>
+                                <span class="font-mono text-xs text-text-dim">2021 – 2024</span>
+                            </div>
+                            <p class="font-mono text-xs text-text-dim">Higher Institute of Computer Science (ISIMM) •
+                                Mention Assez Bien</p>
+                            <p class="text-xs text-text-muted font-light">
+                                Specialized in Microcontrollers, Signal Processing, IoT Architectures, and Low-Level
+                                Programming.
+                            </p>
+                        </div>
                     </div>
-                    <ul class="text-xs text-slate-300 space-y-1">
-                        <li><strong>English C1 Advanced:</strong> Imperial English UK / Esprit Language Center</li>
-                        <li><strong>TestDaF German:</strong> g.a.s.t. / Inlingua Hammamet</li>
-                        <li><strong>Goethe-Institut:</strong> Fit für Deutschland & Schlüssel-Seminare</li>
-                    </ul>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Contact & Footer -->
-    <footer id="contact" class="py-16 border-t border-slate-800 text-center space-y-6">
-        <div class="max-w-xl mx-auto px-6 space-y-4">
-            <h2 class="text-2xl font-bold text-white">Let's Connect</h2>
-            <p class="text-sm text-slate-400">Feel free to reach out for research collaborations, engineering roles, or
-                inquiries.</p>
-            <div class="flex justify-center gap-6 pt-2 text-lg text-slate-300">
-                <a href="mailto:aymen.rahmani@esprit.tn" class="hover:text-cyan-400" title="Email"><i
-                        class="fas fa-envelope"></i></a>
-                <a href="https://github.com/Aymenrahmanii" target="_blank" class="hover:text-cyan-400" title="GitHub"><i
-                        class="fab fa-github"></i></a>
+            <!-- Right Column: Certifications & Awards (5 cols) -->
+            <div id="certs" class="lg:col-span-5 space-y-8">
+                <div class="border-b border-obsidian-border pb-4">
+                    <span class="font-mono text-xs text-accent-green uppercase tracking-wider block mb-1">// VERIFIED
+                        CREDENTIALS</span>
+                    <h2 class="font-serif text-3xl text-text-primary">Certifications & Awards</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- NVIDIA Certs Card -->
+                    <div class="bg-obsidian-surface border border-obsidian-border p-5 rounded-xl space-y-3">
+                        <div class="flex items-center space-x-2 font-mono text-xs text-accent-green font-semibold">
+                            <i class="fa-brands fa-nvidia text-sm"></i>
+                            <span>NVIDIA DEEP LEARNING INSTITUTE (DLI)</span>
+                        </div>
+                        <ul class="text-xs font-mono text-text-muted space-y-1.5 list-disc list-inside">
+                            <li>Building Transformer-Based NLP Apps</li>
+                            <li>Rapid App Development with LLMs</li>
+                            <li>Building LLM Apps with Prompt Engineering</li>
+                            <li>Evaluation & Customization of LLMs</li>
+                        </ul>
+                    </div>
+
+                    <!-- Hackathon Card -->
+                    <div class="bg-obsidian-surface border border-obsidian-border p-5 rounded-xl space-y-2">
+                        <div class="flex items-center space-x-2 font-mono text-xs text-accent-amber font-semibold">
+                            <i class="fa-solid fa-trophy"></i>
+                            <span>AI AD AWARD HACKATHON</span>
+                        </div>
+                        <p class="text-xs text-text-muted font-light">
+                            Co-organized by AFI Group, Esprit, & Tunisia Digital Summit (April 2026). Theme:
+                            <em>"Reimagining Industrial Zones through AI"</em>.
+                        </p>
+                    </div>
+
+                    <!-- Summer Schools & Other Certs -->
+                    <div class="bg-obsidian-surface border border-obsidian-border p-5 rounded-xl space-y-2">
+                        <div class="flex items-center space-x-2 font-mono text-xs text-accent-blue font-semibold">
+                            <i class="fa-solid fa-certificate"></i>
+                            <span>MASSAI & IBM CREDENTIALS</span>
+                        </div>
+                        <ul class="text-xs font-mono text-text-muted space-y-1">
+                            <li>• <strong>MASSAI AI Summer School</strong> (Esprit & LAMSIN, 2025)</li>
+                            <li>• <strong>IBM Data Science Tools & Methodology</strong> (2025)</li>
+                            <li>• <strong>Agentic AI Certification</strong> (IT House / CAG Academy)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Minimalist Editorial Footer -->
+    <footer class="border-t border-obsidian-border bg-obsidian py-16">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="space-y-2 text-center md:text-left">
+                <span class="font-serif text-3xl text-text-primary italic">Aymen Rahmani</span>
+                <p class="font-mono text-xs text-text-dim">Data Science Engineer • Tunis, Tunisia</p>
+            </div>
+
+            <div class="flex items-center space-x-6 text-sm font-mono text-text-muted">
+                <a href="https://github.com/Aymenrahmanii" target="_blank"
+                    class="hover:text-accent-blue transition-colors">GitHub</a>
                 <a href="https://www.linkedin.com/in/aymen-rahmani-97b9b6271/" target="_blank"
-                    class="hover:text-cyan-400" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://leetcode.com/u/luxman251/" target="_blank" class="hover:text-amber-400"
-                    title="LeetCode"><i class="fas fa-code"></i></a>
+                    class="hover:text-accent-blue transition-colors">LinkedIn</a>
+                <a href="https://leetcode.com/u/luxman251/" target="_blank"
+                    class="hover:text-accent-amber transition-colors">LeetCode</a>
+                <button onclick="copyEmail()" class="hover:text-accent-green transition-colors">Email</button>
             </div>
-            <p class="text-xs text-slate-500 pt-6">&copy; 2026 Aymen Rahmani. Built with HTML & Tailwind CSS.</p>
+
+            <div class="font-mono text-xs text-text-dim">
+                &copy; 2026 Aymen Rahmani.
+            </div>
         </div>
     </footer>
 
+    <!-- Interactive JavaScript Micro-Interactions -->
+    <script>
+        // Terminal Tab Switcher
+        function switchTerminalTab(tabName) {
+            const tabs = ['metrics', 'stack', 'languages'];
+            tabs.forEach(tab => {
+                const btn = document.getElementById(`tab-${tab}`);
+                const content = document.getElementById(`terminal-${tab}-content`);
+
+                if (tab === tabName) {
+                    btn.classList.add('text-accent-blue', 'bg-obsidian-surface', 'font-semibold');
+                    btn.classList.remove('text-text-muted');
+                    content.classList.remove('hidden');
+                } else {
+                    btn.classList.remove('text-accent-blue', 'bg-obsidian-surface', 'font-semibold');
+                    btn.classList.add('text-text-muted');
+                    content.classList.add('hidden');
+                }
+            });
+        }
+
+        // Email Copy Functionality
+        function copyEmail() {
+            const email = "aymen.rahmani@esprit.tn";
+            navigator.clipboard.writeText(email).then(() => {
+                const copyBtnText = document.getElementById("copy-btn-text");
+                const originalText = copyBtnText.innerText;
+                copyBtnText.innerText = "COPIED TO CLIPBOARD!";
+                copyBtnText.classList.add("text-accent-green");
+
+                setTimeout(() => {
+                    copyBtnText.innerText = originalText;
+                    copyBtnText.classList.remove("text-accent-green");
+                }, 2000);
+            });
+        }
+    </script>
 </body>
 
 </html>
