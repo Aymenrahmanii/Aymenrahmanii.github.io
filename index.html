@@ -109,6 +109,7 @@
             justify-content: center;
             z-index: 100;
             padding: 0 16px;
+            transition: var(--transition-cinematic);
         }
 
         .nav-pill {
@@ -122,6 +123,8 @@
             align-items: center;
             gap: 24px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            max-width: 100%;
         }
 
         .nav-brand {
@@ -133,6 +136,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            white-space: nowrap;
         }
 
         .nav-brand .brand-dot {
@@ -141,12 +145,14 @@
             background-color: var(--accent-emerald);
             border-radius: var(--radius-full);
             box-shadow: 0 0 8px var(--accent-emerald);
+            flex-shrink: 0;
         }
 
         .nav-links {
             display: flex;
             gap: 20px;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
@@ -168,11 +174,29 @@
             border-radius: var(--radius-full);
             color: var(--text-primary);
             transition: var(--transition-cinematic);
+            white-space: nowrap;
         }
 
         .nav-cta:hover {
             border-color: var(--primary-indigo);
             background: rgba(99, 102, 241, 0.1);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            font-size: 1rem;
+            padding: 6px 10px;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: var(--transition-cinematic);
+        }
+
+        .nav-toggle:hover {
+            border-color: var(--primary-indigo);
+            color: var(--primary-indigo);
         }
 
         /* ==========================================================================
@@ -204,7 +228,7 @@
 
         .section-title {
             font-family: var(--font-display);
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
             font-weight: 600;
             letter-spacing: -0.03em;
             line-height: 1.2;
@@ -224,14 +248,16 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 4px 12px;
+            padding: 6px 14px;
             background: rgba(16, 185, 129, 0.08);
             border: 1px solid rgba(16, 185, 129, 0.2);
             border-radius: var(--radius-full);
             font-family: var(--font-mono);
-            font-size: 0.75rem;
+            font-size: clamp(0.7rem, 2vw, 0.75rem);
             color: var(--accent-emerald);
             margin-bottom: 24px;
+            max-width: 100%;
+            line-height: 1.4;
         }
 
         .hero-status .pulse {
@@ -240,27 +266,28 @@
             background: var(--accent-emerald);
             border-radius: 50%;
             box-shadow: 0 0 6px var(--accent-emerald);
+            flex-shrink: 0;
         }
 
         .hero-name {
             font-family: var(--font-display);
-            font-size: 3.5rem;
+            font-size: clamp(2.2rem, 6vw, 3.5rem);
             font-weight: 600;
             letter-spacing: -0.04em;
-            line-height: 1.05;
+            line-height: 1.08;
             color: var(--text-primary);
             margin-bottom: 12px;
         }
 
         .hero-role {
-            font-size: 1.35rem;
+            font-size: clamp(1.1rem, 3vw, 1.35rem);
             color: var(--text-secondary);
             font-weight: 300;
             margin-bottom: 24px;
         }
 
         .hero-summary {
-            font-size: 1.05rem;
+            font-size: clamp(0.92rem, 2vw, 1.05rem);
             max-width: 760px;
             color: var(--text-secondary);
             margin-bottom: 32px;
@@ -717,6 +744,179 @@
             font-size: 0.75rem;
             color: var(--text-secondary);
         }
+
+        /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+        @media (max-width: 992px) {
+            .hero {
+                padding-top: 140px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+
+            .hero {
+                padding-top: 120px;
+                padding-bottom: 40px;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+
+            .nav-wrapper {
+                top: 14px;
+                padding: 0 12px;
+            }
+
+            .nav-pill {
+                width: 100%;
+                justify-content: space-between;
+                padding: 8px 16px;
+                border-radius: var(--radius-full);
+            }
+
+            .nav-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: calc(100% + 10px);
+                left: 0;
+                right: 0;
+                background: rgba(15, 17, 18, 0.96);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                border: 1px solid var(--border-subtle);
+                border-radius: var(--radius-lg);
+                padding: 20px;
+                flex-direction: column;
+                gap: 12px;
+                box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: var(--transition-cinematic);
+            }
+
+            .nav-links.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 8px 12px;
+                border-radius: var(--radius-md);
+                font-size: 0.95rem;
+                width: 100%;
+            }
+
+            .nav-links a:hover {
+                background: rgba(255, 255, 255, 0.05);
+            }
+
+            .desktop-cta {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .project-card {
+                padding: 20px;
+                border-radius: var(--radius-lg);
+            }
+
+            .project-title {
+                font-size: 1.15rem;
+            }
+
+            .project-desc {
+                font-size: 0.85rem;
+            }
+
+            .timeline {
+                padding-left: 20px;
+            }
+
+            .timeline::before {
+                left: 5px;
+            }
+
+            .timeline-node {
+                left: -20px;
+                width: 12px;
+                height: 12px;
+                top: 8px;
+            }
+
+            .exp-card {
+                padding: 16px;
+            }
+
+            .exp-role {
+                font-size: 1rem;
+            }
+
+            .exp-company {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-actions {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                width: 100%;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+                justify-content: center;
+                padding: 10px 12px;
+                font-size: 0.82rem;
+            }
+
+            .stat-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .stat-card {
+                padding: 14px;
+            }
+
+            .stat-val {
+                font-size: 1.4rem;
+            }
+
+            .stat-lbl {
+                font-size: 0.72rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -732,13 +932,16 @@
                 <span class="brand-dot"></span>
                 <span>RAHMANI.AI</span>
             </a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#education">Education</a></li>
             </ul>
-            <a href="mailto:aymen.rahmani@esprit.tn" class="nav-cta">Get in Touch</a>
+            <a href="mailto:aymen.rahmani@esprit.tn" class="nav-cta desktop-cta">Get in Touch</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
         </nav>
     </div>
 
@@ -755,7 +958,7 @@
             <h2 class="hero-role">AI & Machine Learning Engineer</h2>
 
             <p class="hero-summary">
-                Software and Data Science Engineering Master's student with an Embedded Systems background. Specializing
+                Software and Data Science Engineering student with an Embedded Systems background. Specializing
                 in <strong>Applied AI, High-Performance ML Systems, Generative AI (LLMs/VLMs), and Computer
                     Vision</strong>. Engineered sub-5ms C++/CUDA inference engines, self-hosted agentic LLM
                 orchestration pipelines, and fine-tuned multimodal vision models.
@@ -892,7 +1095,8 @@
                         <ul class="project-bullets">
                             <li>Fine-tuned Qwen2-VL using <strong>4-bit QLoRA ($r=64, \alpha=128$)</strong> and
                                 Multimodal DPO alignment, boosting inspection accuracy from 62.0% to
-                                <strong>93.0%</strong> and cutting visual hallucination to <strong>1.0%</strong>.</li>
+                                <strong>93.0%</strong> and cutting visual hallucination to <strong>1.0%</strong>.
+                            </li>
                             <li>Quantized to 4-bit AWQ and deployed via vLLM async API delivering <strong>111 ms p50
                                     latency</strong> in a <strong>5.8 GB VRAM footprint</strong>.</li>
                         </ul>
@@ -931,7 +1135,8 @@
                         <ul class="exp-bullets">
                             <li>Developed a dual-engine Automated Optical Inspection (AOI) system combining
                                 <strong>RT-DETR</strong> (supervised) and <strong>PatchCore</strong> (unsupervised) for
-                                micro-scale PCB defect detection.</li>
+                                micro-scale PCB defect detection.
+                            </li>
                             <li>Optimized loss functions (EIoU + NWD), delivering a <strong>+24.15% boost in mAP₅₀:₉₅
                                     (77.76%)</strong>.</li>
                             <li>Deployed high-throughput multi-threaded REST and WebSocket microservices using FastAPI
@@ -962,7 +1167,8 @@
                         </div>
                         <ul class="exp-bullets">
                             <li>Preprocessed text data streams and engineered an XGBoost classification system achieving
-                                <strong>90% accuracy and 91 F1-score</strong>.</li>
+                                <strong>90% accuracy and 91 F1-score</strong>.
+                            </li>
                             <li>Integrated REST APIs with Spring Boot and MySQL databases for automated model inference
                                 pipelines.</li>
                         </ul>
@@ -1073,7 +1279,7 @@
                         </div>
                         <div style="font-size: 0.88rem; color: var(--primary-indigo); margin-bottom: 4px;">Engineering
                             in Software Engineering</div>
-                        <div style="font-size: 0.82rem; color: var(--text-secondary);">Master's Level Degree
+                        <div style="font-size: 0.82rem; color: var(--text-secondary);">Engineer's Level Degree
                             (Specializing in Software Architecture, AI & Data Science) — Ariana, Tunis</div>
                     </div>
 
@@ -1130,6 +1336,52 @@
         </footer>
 
     </main>
+
+    <script>
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navLinks.classList.toggle('active');
+                const icon = navToggle.querySelector('i');
+                if (icon) {
+                    if (navLinks.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-xmark');
+                    } else {
+                        icon.classList.remove('fa-xmark');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+
+            // Close menu when clicking link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    const icon = navToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-xmark');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                    const icon = navToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-xmark');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+        }
+    </script>
 
 </body>
 
