@@ -1,789 +1,1136 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aymen Rahmani — AI Systems & High-Performance Inference Engineer</title>
+    <title>Rahmani Aymen — AI & Machine Learning Engineer</title>
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts: Instrument Serif, Plus Jakarta Sans, JetBrains Mono -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
 
-    <!-- FontAwesome Icons -->
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        obsidian: {
-                            DEFAULT: '#0B0C0E',
-                            surface: '#141619',
-                            border: '#22262B',
-                            hover: '#2A2E35'
-                        },
-                        accent: {
-                            blue: '#38BDF8',
-                            emerald: '#10B981',
-                            amber: '#F59E0B'
-                        },
-                        text: {
-                            primary: '#E2E8F0',
-                            muted: '#94A3B8',
-                            dim: '#64748B'
-                        }
-                    },
-                    fontFamily: {
-                        serif: ['"Instrument Serif"', 'serif'],
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        mono: ['"JetBrains Mono"', 'monospace']
-                    }
-                }
+    <style>
+        /* ==========================================================================
+       DESIGN SYSTEM TOKENS (from design.md)
+       ========================================================================== */
+        :root {
+            --bg-dark: #08090A;
+            --bg-light: #FAFAFA;
+            --surface-card: #0F1112;
+            --primary-indigo: #6366F1;
+            --accent-emerald: #10B981;
+            --accent-orange: #F59E0B;
+            --text-primary: #EAEAEA;
+            --text-secondary: #A3A3A3;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(99, 102, 241, 0.35);
+            --glow-indigo: rgba(99, 102, 241, 0.15);
+
+            --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 24px;
+            --radius-full: 9999px;
+
+            --transition-cinematic: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ==========================================================================
+       BASE & RESET
+       ========================================================================== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-weight: 300;
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: rgba(99, 102, 241, 0.3);
+            color: #ffffff;
+        }
+
+        body {
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Subtle background ambient glows */
+        .glow-bg {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1200px;
+            height: 600px;
+            background: radial-gradient(circle at 50% -20%, var(--glow-indigo), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ==========================================================================
+       NAVIGATION PILL
+       ========================================================================== */
+        .nav-wrapper {
+            position: fixed;
+            top: 24px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 100;
+            padding: 0 16px;
+        }
+
+        .nav-pill {
+            background: rgba(15, 17, 18, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-full);
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-brand {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-brand .brand-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-emerald);
+            border-radius: var(--radius-full);
+            box-shadow: 0 0 8px var(--accent-emerald);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: var(--transition-cinematic);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-full);
+            color: var(--text-primary);
+            transition: var(--transition-cinematic);
+        }
+
+        .nav-cta:hover {
+            border-color: var(--primary-indigo);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        /* ==========================================================================
+       CONTAINER & SECTIONS
+       ========================================================================== */
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 10;
+        }
+
+        section {
+            padding: 96px 0;
+        }
+
+        .section-tag {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary-indigo);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 40px;
+        }
+
+        /* ==========================================================================
+       HERO SECTION
+       ========================================================================== */
+        .hero {
+            padding-top: 180px;
+            padding-bottom: 64px;
+        }
+
+        .hero-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: var(--radius-full);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent-emerald);
+            margin-bottom: 24px;
+        }
+
+        .hero-status .pulse {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-emerald);
+            border-radius: 50%;
+            box-shadow: 0 0 6px var(--accent-emerald);
+        }
+
+        .hero-name {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 600;
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .hero-role {
+            font-size: 1.35rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-bottom: 24px;
+        }
+
+        .hero-summary {
+            font-size: 1.05rem;
+            max-width: 760px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
+        .hero-summary strong {
+            color: var(--text-primary);
+            font-weight: 400;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 40px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 6px 12px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: var(--radius-full);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition-cinematic);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary-indigo);
+            color: #ffffff;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(99, 102, 241, 0.45);
+        }
+
+        .btn-secondary {
+            background: var(--surface-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+       STAT TICKER
+       ========================================================================== */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 48px;
+        }
+
+        .stat-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+        }
+
+        .stat-val {
+            font-family: var(--font-mono);
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .stat-val span {
+            color: var(--primary-indigo);
+        }
+
+        .stat-lbl {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* ==========================================================================
+       PROJECTS (BENTO GRID)
+       ========================================================================== */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+
+        .project-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition-cinematic);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-hover);
+        }
+
+        .card-col-12 {
+            grid-column: span 12;
+        }
+
+        .card-col-6 {
+            grid-column: span 6;
+        }
+
+        @media (max-width: 850px) {
+
+            .card-col-6,
+            .card-col-12 {
+                grid-column: span 12;
             }
         }
-    </script>
 
-    <style>
-        body {
-            background-color: #0B0C0E;
-            color: #E2E8F0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
         }
 
-        .bg-grid-pattern {
-            background-size: 32px 32px;
-            background-image:
-                linear-gradient(to right, rgba(34, 38, 43, 0.4) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(34, 38, 43, 0.4) 1px, transparent 1px);
+        .project-category {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--primary-indigo);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        ::-webkit-scrollbar {
-            width: 6px;
+        .project-badge {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
         }
 
-        ::-webkit-scrollbar-track {
-            background: #0B0C0E;
+        .project-title {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: #22262B;
-            border-radius: 3px;
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #38BDF8;
+        .project-bullets {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .project-bullets li {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 18px;
+        }
+
+        .project-bullets li::before {
+            content: "•";
+            color: var(--primary-indigo);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .project-bullets strong {
+            color: var(--text-primary);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .tech-pill {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        /* ==========================================================================
+       EXPERIENCE & EDUCATION
+       ========================================================================== */
+        .timeline {
+            position: relative;
+            padding-left: 28px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 8px;
+            bottom: 8px;
+            width: 1px;
+            background: var(--border-subtle);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-node {
+            position: absolute;
+            left: -28px;
+            top: 6px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            border: 2px solid var(--primary-indigo);
+        }
+
+        .exp-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .exp-role {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .exp-company {
+            color: var(--primary-indigo);
+            font-weight: 400;
+        }
+
+        .exp-date {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.04);
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+        }
+
+        .exp-bullets {
+            list-style: none;
+            margin-top: 12px;
+        }
+
+        .exp-bullets li {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 16px;
+        }
+
+        .exp-bullets li::before {
+            content: "›";
+            color: var(--primary-indigo);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .exp-bullets strong {
+            color: var(--text-primary);
+        }
+
+        /* ==========================================================================
+       TECHNICAL SKILLS GRID
+       ========================================================================== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .skill-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+        }
+
+        .skill-card-title {
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-tag {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 3px 8px;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        /* ==========================================================================
+       LANGUAGES & EDUCATION
+       ========================================================================== */
+        .two-col-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .two-col-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .info-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+        }
+
+        .lang-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .lang-item:last-child {
+            border-bottom: none;
+        }
+
+        .lang-name {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .lang-badge {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--primary-indigo);
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+        }
+
+        /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+        footer {
+            border-top: 1px solid var(--border-subtle);
+            padding: 48px 0;
+            margin-top: 64px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            transition: var(--transition-cinematic);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-indigo);
+        }
+
+        .footer-copy {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
         }
     </style>
 </head>
 
-<body
-    class="bg-obsidian text-text-primary antialiased bg-grid-pattern selection:bg-accent-blue/20 selection:text-accent-blue">
+<body>
 
-    <!-- Header Navigation -->
-    <header class="fixed top-0 w-full bg-obsidian/90 backdrop-blur-md z-50 border-b border-obsidian-border">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="#" class="flex items-center space-x-3 group">
-                <span
-                    class="font-serif text-2xl italic text-text-primary group-hover:text-accent-blue transition-colors">Aymen
-                    Rahmani</span>
-                <span
-                    class="font-mono text-[11px] text-accent-blue px-2 py-0.5 rounded bg-accent-blue/10 border border-accent-blue/20">C++
-                    · CUDA · PyTorch · LLMOps</span>
+    <!-- Background Ambient Glow -->
+    <div class="glow-bg"></div>
+
+    <!-- FLOATING NAVIGATION PILL -->
+    <div class="nav-wrapper">
+        <nav class="nav-pill">
+            <a href="#" class="nav-brand">
+                <span class="brand-dot"></span>
+                <span>RAHMANI.AI</span>
             </a>
+            <ul class="nav-links">
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+            </ul>
+            <a href="mailto:aymen.rahmani@esprit.tn" class="nav-cta">Get in Touch</a>
+        </nav>
+    </div>
 
-            <nav class="hidden md:flex items-center space-x-8 text-xs font-mono tracking-wider text-text-muted">
-                <a href="#systems" class="hover:text-text-primary transition-colors">// FLAGSHIP_SYSTEMS</a>
-                <a href="#repos" class="hover:text-text-primary transition-colors">// RESEARCH_REPOS</a>
-                <a href="#stack" class="hover:text-text-primary transition-colors">// STACK</a>
-                <a href="#timeline" class="hover:text-text-primary transition-colors">// CHRONOLOGY</a>
-            </nav>
-
-            <button onclick="copyEmail()"
-                class="font-mono text-xs px-3.5 py-1.5 rounded border border-obsidian-border bg-obsidian-surface hover:border-accent-blue/50 text-text-primary transition-all flex items-center space-x-2">
-                <i class="fa-regular fa-copy text-accent-blue"></i>
-                <span id="copy-btn-text">aymen.rahmani@esprit.tn</span>
-            </button>
-        </div>
-    </header>
-
-    <!-- Main Container -->
-    <main class="max-w-7xl mx-auto px-6 pt-28 pb-20 space-y-24">
+    <main class="container">
 
         <!-- HERO SECTION -->
-        <section class="grid lg:grid-cols-12 gap-10 items-center pt-6">
-            <!-- Left Editorial Text -->
-            <div class="lg:col-span-7 space-y-6">
-                <div
-                    class="inline-flex items-center space-x-2 px-3 py-1 rounded bg-obsidian-surface border border-obsidian-border">
-                    <span class="w-2 h-2 rounded-full bg-accent-emerald"></span>
-                    <span class="font-mono text-xs text-text-muted uppercase tracking-wider">Esprit Software Engineering
-                        Candidate · Tunis</span>
-                </div>
+        <section class="hero">
+            <div class="hero-status">
+                <span class="pulse"></span>
+                <span>Seeking AI/ML Internship or Thesis Starting 2026 / 2027</span>
+            </div>
 
-                <div class="space-y-4">
-                    <h1 class="font-serif text-5xl sm:text-7xl leading-[1.05] text-text-primary">
-                        Engineering <em class="italic text-accent-blue">High-Throughput</em> AI & Low-Latency Systems.
-                    </h1>
-                    <p class="text-base sm:text-lg text-text-muted leading-relaxed font-light max-w-2xl">
-                        Specializing in C++/CUDA inference engines, vLLM agentic orchestration, and fine-tuned
-                        multimodal models. Bridging hardware-level optimization with production deep learning.
-                    </p>
-                </div>
+            <h1 class="hero-name">Rahmani Aymen</h1>
+            <h2 class="hero-role">AI & Machine Learning Engineer</h2>
 
-                <!-- Action Links -->
-                <div class="flex flex-wrap items-center gap-3 pt-2">
-                    <a href="https://github.com/Aymenrahmanii" target="_blank"
-                        class="px-4 py-2 rounded bg-obsidian-surface border border-obsidian-border hover:border-text-primary transition-all flex items-center space-x-2.5 text-xs font-mono">
-                        <i class="fa-brands fa-github text-base"></i>
-                        <span>Aymenrahmanii</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/aymen-rahmani-97b9b6271/" target="_blank"
-                        class="px-4 py-2 rounded bg-obsidian-surface border border-obsidian-border hover:border-accent-blue transition-all flex items-center space-x-2.5 text-xs font-mono text-accent-blue">
-                        <i class="fa-brands fa-linkedin text-base"></i>
-                        <span>LinkedIn</span>
-                    </a>
-                    <a href="https://leetcode.com/u/luxman251/" target="_blank"
-                        class="px-4 py-2 rounded bg-obsidian-surface border border-obsidian-border hover:border-accent-amber transition-all flex items-center space-x-2.5 text-xs font-mono text-accent-amber">
-                        <i class="fa-solid fa-code text-base"></i>
-                        <span>LeetCode @luxman251</span>
-                    </a>
+            <p class="hero-summary">
+                Software and Data Science Engineering Master's student with an Embedded Systems background. Specializing
+                in <strong>Applied AI, High-Performance ML Systems, Generative AI (LLMs/VLMs), and Computer
+                    Vision</strong>. Engineered sub-5ms C++/CUDA inference engines, self-hosted agentic LLM
+                orchestration pipelines, and fine-tuned multimodal vision models.
+            </p>
+
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <i class="fa-solid fa-location-dot" style="color: var(--primary-indigo);"></i>
+                    <span>Open to Relocation / Remote</span>
+                </div>
+                <div class="hero-meta-item">
+                    <i class="fa-solid fa-language" style="color: var(--primary-indigo);"></i>
+                    <span>EN (C1) · DE (B2) · FR (B2)</span>
                 </div>
             </div>
 
-            <!-- Right Interactive Systems Console -->
-            <div class="lg:col-span-5">
-                <div class="rounded-lg border border-obsidian-border bg-obsidian-surface overflow-hidden shadow-2xl">
-                    <!-- Console Header -->
-                    <div
-                        class="px-4 py-2.5 border-b border-obsidian-border bg-obsidian flex items-center justify-between">
-                        <div class="flex items-center space-x-1.5">
-                            <span class="w-2.5 h-2.5 rounded-full bg-red-500/70 inline-block"></span>
-                            <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/70 inline-block"></span>
-                            <span class="w-2.5 h-2.5 rounded-full bg-green-500/70 inline-block"></span>
-                        </div>
-                        <span class="font-mono text-[11px] text-text-dim">system_benchmark_telemetry.cpp</span>
-                        <div class="w-10"></div>
-                    </div>
-
-                    <!-- Tabs -->
-                    <div class="flex border-b border-obsidian-border font-mono text-xs bg-obsidian/40">
-                        <button onclick="switchConsoleTab('p1')" id="tab-p1"
-                            class="flex-1 py-2 px-2 border-r border-obsidian-border text-accent-blue bg-obsidian-surface font-semibold">NexusPerceive</button>
-                        <button onclick="switchConsoleTab('p2')" id="tab-p2"
-                            class="flex-1 py-2 px-2 border-r border-obsidian-border text-text-muted hover:text-text-primary">NexusAgent</button>
-                        <button onclick="switchConsoleTab('p3')" id="tab-p3"
-                            class="flex-1 py-2 px-2 text-text-muted hover:text-text-primary">NexusVLM</button>
-                    </div>
-
-                    <!-- Console Body -->
-                    <div class="p-4 font-mono text-[11px] space-y-3 min-h-[250px] bg-obsidian/90 leading-relaxed">
-                        <!-- Tab 1: NexusPerceive -->
-                        <div id="console-p1" class="space-y-2 text-text-muted">
-                            <div class="text-text-dim">// C++17 / CUDA 12.4 / TensorRT 10.x Execution Output</div>
-                            <div class="flex justify-between border-b border-obsidian-border/50 pb-1">
-                                <span>End-to-End Latency:</span>
-                                <span class="text-accent-emerald font-semibold">4.065 ms / frame</span>
-                            </div>
-                            <div class="flex justify-between border-b border-obsidian-border/50 pb-1">
-                                <span>Inference Throughput:</span>
-                                <span class="text-accent-blue font-semibold">246 FPS (@FP16)</span>
-                            </div>
-                            <div class="flex justify-between border-b border-obsidian-border/50 pb-1">
-                                <span>Memory Architecture:</span>
-                                <span class="text-text-primary">Zero-Copy Pinned CUDA H2D</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>GPU NMS Execution:</span>
-                                <span class="text-accent-emerald">350 μs (Parallel IoU Mask)</span>
-                            </div>
-                        </div>
-
-                        <!-- Tab 2: NexusAgent -->
-                        <div id="console-p2" class="space-y-2 text-text-muted hidden">
-                            <div class="text-text-dim">// vLLM PagedAttention / Redis VSS Telemetry</div>
-                            <div class="flex justify-between border-b border-obsidian-border/50 pb-1">
-                                <span>Time To First Token (TTFT):</span>
-                                <span class="text-accent-emerald font-semibold">85.00 ms</span>
-                            </div>
-                            <div class="flex justify-between border-b border-obsidian-border/50 pb-1">
-                                <span>Semantic Cache Hit Ratio:</span>
-                                <span class="text-accent-blue font-semibold">68.8% (&lt;8ms Response)</span>
-                            </div>
-                            <div class="flex justify-between border-b border-obsidian-border/50 pb-1">
-                                <span>JSON Schema Compliance:</span>
-                                <span class="text-accent-emerald font-semibold">100.0% (DFA Logit Mask)</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Request Throughput:</span>
-                                <span class="text-text-primary">42.61 req/sec</span>
-                            </div>
-                        </div>
-
-                        <!-- Tab 3: NexusVLM -->
-                        <div id="console-p3" class="space-y-2 text-text-muted hidden">
-                            <div class="text-text-dim">// Qwen2-VL-7B QLoRA + Multimodal DPO Benchmark</div>
-                            <div class="flex justify-between border-b border-obsidian-border/50 pb-1">
-                                <span>Fine-Tuned VQA Accuracy:</span>
-                                <span class="text-accent-emerald font-semibold">93.00% (+31 pp vs Base)</span>
-                            </div>
-                            <div class="flex justify-between border-b border-obsidian-border/50 pb-1">
-                                <span>Visual Hallucination Rate:</span>
-                                <span class="text-accent-emerald font-semibold">1.00% (DPO Aligned)</span>
-                            </div>
-                            <div class="flex justify-between border-b border-obsidian-border/50 pb-1">
-                                <span>p50 End-to-End Latency:</span>
-                                <span class="text-accent-blue font-semibold">111.13 ms</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Serving VRAM (AWQ 4-bit):</span>
-                                <span class="text-text-primary">5.8 GB (Single RTX 4090)</span>
-                            </div>
-                        </div>
-
-                        <div class="pt-2 flex items-center space-x-2 text-text-dim border-t border-obsidian-border/40">
-                            <span class="text-accent-emerald">➜</span>
-                            <span class="text-accent-blue">system_status</span>
-                            <span class="text-accent-emerald font-semibold">OK (All SLAs Met)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FLAGSHIP SYSTEMS SECTION -->
-        <section id="systems" class="space-y-8">
-            <div
-                class="border-b border-obsidian-border pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                <div>
-                    <span class="font-mono text-xs text-accent-blue uppercase tracking-wider block mb-1">// VERIFIED
-                        HIGH-PERFORMANCE SYSTEMS</span>
-                    <h2 class="font-serif text-4xl text-text-primary">Flagship Engineering Repositories</h2>
-                </div>
-                <p class="font-mono text-xs text-text-dim">Sub-5ms Vision Engines, vLLM Orchestration & Multimodal
-                    Alignment</p>
-            </div>
-
-            <!-- Project 1: NexusPerceive -->
-            <div
-                class="bg-obsidian-surface border border-obsidian-border rounded-xl p-6 sm:p-8 hover:border-accent-blue/40 transition-all space-y-6">
-                <div class="flex flex-wrap items-center justify-between gap-4">
-                    <div class="space-y-1">
-                        <div class="flex items-center space-x-3">
-                            <span
-                                class="font-mono text-xs px-2.5 py-0.5 rounded bg-accent-blue/10 border border-accent-blue/30 text-accent-blue font-semibold">SYSTEM
-                                01</span>
-                            <h3 class="font-serif text-3xl text-text-primary">NexusPerceive Engine</h3>
-                        </div>
-                        <p class="font-mono text-xs text-text-dim">High-Throughput C++17 / TensorRT Vision & Perception
-                            System</p>
-                    </div>
-
-                    <a href="https://github.com/Aymenrahmanii" target="_blank"
-                        class="px-3.5 py-1.5 rounded bg-obsidian border border-obsidian-border hover:border-text-primary transition-all font-mono text-xs flex items-center space-x-2">
-                        <i class="fa-brands fa-github text-sm"></i>
-                        <span>Source & Benchmarks</span>
-                    </a>
-                </div>
-
-                <p class="text-text-muted text-sm leading-relaxed font-light">
-                    Built a native, zero-copy inference pipeline using NVIDIA TensorRT 10.x and custom CUDA kernels.
-                    Replaced slow PyTorch/OpenCV CPU bottlenecks with fused CUDA pre-processing (Letterboxing,
-                    Normalization, NHWC-to-NCHW) and parallel Bitmask IoU GPU NMS.
-                </p>
-
-                <!-- SLA Data Matrix -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-2">
-                    <div class="p-3 rounded bg-obsidian border border-obsidian-border">
-                        <div class="font-mono text-[10px] text-text-dim uppercase">End-to-End Latency</div>
-                        <div class="font-mono text-lg font-semibold text-accent-emerald">4.065 ms</div>
-                    </div>
-                    <div class="p-3 rounded bg-obsidian border border-obsidian-border">
-                        <div class="font-mono text-[10px] text-text-dim uppercase">Inference Throughput</div>
-                        <div class="font-mono text-lg font-semibold text-accent-blue">246 FPS</div>
-                    </div>
-                    <div class="p-3 rounded bg-obsidian border border-obsidian-border">
-                        <div class="font-mono text-[10px] text-text-dim uppercase">GPU NMS Execution</div>
-                        <div class="font-mono text-lg font-semibold text-text-primary">350 μs</div>
-                    </div>
-                    <div class="p-3 rounded bg-obsidian border border-obsidian-border">
-                        <div class="font-mono text-[10px] text-text-dim uppercase">VRAM Savings</div>
-                        <div class="font-mono text-lg font-semibold text-accent-amber">-45% vs Eager</div>
-                    </div>
-                </div>
-
-                <div class="flex flex-wrap gap-2 font-mono text-xs pt-2">
-                    <span
-                        class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border text-text-muted">C++17</span>
-                    <span class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border text-text-muted">CUDA
-                        12.4</span>
-                    <span class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border text-text-muted">TensorRT
-                        10.x</span>
-                    <span class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border text-text-muted">Pinned
-                        CUDA Memory</span>
-                    <span class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border text-text-muted">gRPC
-                        Microservice</span>
-                </div>
-            </div>
-
-            <!-- Project 2: NexusAgent Core -->
-            <div
-                class="bg-obsidian-surface border border-obsidian-border rounded-xl p-6 sm:p-8 hover:border-accent-blue/40 transition-all space-y-6">
-                <div class="flex flex-wrap items-center justify-between gap-4">
-                    <div class="space-y-1">
-                        <div class="flex items-center space-x-3">
-                            <span
-                                class="font-mono text-xs px-2.5 py-0.5 rounded bg-accent-emerald/10 border border-accent-emerald/30 text-accent-emerald font-semibold">SYSTEM
-                                02</span>
-                            <h3 class="font-serif text-3xl text-text-primary">NexusAgent Core</h3>
-                        </div>
-                        <p class="font-mono text-xs text-text-dim">Enterprise Agentic LLM Engine with Custom Evals &
-                            Guided Decoding</p>
-                    </div>
-
-                    <a href="https://github.com/Aymenrahmanii" target="_blank"
-                        class="px-3.5 py-1.5 rounded bg-obsidian border border-obsidian-border hover:border-text-primary transition-all font-mono text-xs flex items-center space-x-2">
-                        <i class="fa-brands fa-github text-sm"></i>
-                        <span>Source & Benchmarks</span>
-                    </a>
-                </div>
-
-                <p class="text-text-muted text-sm leading-relaxed font-light">
-                    Architected an enterprise multi-agent engine wrapping vLLM PagedAttention with LRU-cached Finite
-                    State Automata (DFA) logit processors. Intercepts logits to enforce strict Pydantic JSON schemas and
-                    utilizes Redis VSS HNSW vector indexes for high-dimensional semantic caching.
-                </p>
-
-                <!-- SLA Data Matrix -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-2">
-                    <div class="p-3 rounded bg-obsidian border border-obsidian-border">
-                        <div class="font-mono text-[10px] text-text-dim uppercase">Time To First Token</div>
-                        <div class="font-mono text-lg font-semibold text-accent-emerald">85.00 ms</div>
-                    </div>
-                    <div class="p-3 rounded bg-obsidian border border-obsidian-border">
-                        <div class="font-mono text-[10px] text-text-dim uppercase">Cache Hit Ratio</div>
-                        <div class="font-mono text-lg font-semibold text-accent-blue">68.8% (&lt;8ms)</div>
-                    </div>
-                    <div class="p-3 rounded bg-obsidian border border-obsidian-border">
-                        <div class="font-mono text-[10px] text-text-dim uppercase">JSON Schema Compliance</div>
-                        <div class="font-mono text-lg font-semibold text-accent-emerald">100.0%</div>
-                    </div>
-                    <div class="p-3 rounded bg-obsidian border border-obsidian-border">
-                        <div class="font-mono text-[10px] text-text-dim uppercase">Token Cost Reduction</div>
-                        <div class="font-mono text-lg font-semibold text-accent-amber">&gt;65%</div>
-                    </div>
-                </div>
-
-                <div class="flex flex-wrap gap-2 font-mono text-xs pt-2">
-                    <span class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border text-text-muted">Python
-                        3.11</span>
-                    <span class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border text-text-muted">vLLM
-                        PagedAttention</span>
-                    <span class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border text-text-muted">Redis
-                        VSS (HNSW)</span>
-                    <span
-                        class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border text-text-muted">FastAPI</span>
-                    <span class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border text-text-muted">Async
-                        DeepEval</span>
-                </div>
-            </div>
-
-            <!-- Project 3: NexusMultimodal-VL -->
-            <div
-                class="bg-obsidian-surface border border-obsidian-border rounded-xl p-6 sm:p-8 hover:border-accent-blue/40 transition-all space-y-6">
-                <div class="flex flex-wrap items-center justify-between gap-4">
-                    <div class="space-y-1">
-                        <div class="flex items-center space-x-3">
-                            <span
-                                class="font-mono text-xs px-2.5 py-0.5 rounded bg-accent-amber/10 border border-accent-amber/30 text-accent-amber font-semibold">SYSTEM
-                                03</span>
-                            <h3 class="font-serif text-3xl text-text-primary">NexusMultimodal-VL</h3>
-                        </div>
-                        <p class="font-mono text-xs text-text-dim">Domain-Specific Fine-Tuned Multimodal Model (Vision +
-                            Language)</p>
-                    </div>
-
-                    <a href="https://github.com/Aymenrahmanii" target="_blank"
-                        class="px-3.5 py-1.5 rounded bg-obsidian border border-obsidian-border hover:border-text-primary transition-all font-mono text-xs flex items-center space-x-2">
-                        <i class="fa-brands fa-github text-sm"></i>
-                        <span>Source & Benchmarks</span>
-                    </a>
-                </div>
-
-                <p class="text-text-muted text-sm leading-relaxed font-light">
-                    Fine-tuned Qwen2-VL for industrial component inspection using dynamic 2D patchification, 4-bit QLoRA
-                    adapter injection, and Multimodal Direct Preference Optimization (DPO) to eliminate visual
-                    hallucination. Quantized to 4-bit AWQ for deployment.
-                </p>
-
-                <!-- SLA Data Matrix -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-2">
-                    <div class="p-3 rounded bg-obsidian border border-obsidian-border">
-                        <div class="font-mono text-[10px] text-text-dim uppercase">Task VQA Accuracy</div>
-                        <div class="font-mono text-lg font-semibold text-accent-emerald">93.00% (+31 pp)</div>
-                    </div>
-                    <div class="p-3 rounded bg-obsidian border border-obsidian-border">
-                        <div class="font-mono text-[10px] text-text-dim uppercase">Hallucination Rate</div>
-                        <div class="font-mono text-lg font-semibold text-accent-emerald">1.00%</div>
-                    </div>
-                    <div class="p-3 rounded bg-obsidian border border-obsidian-border">
-                        <div class="font-mono text-[10px] text-text-dim uppercase">p50 Latency</div>
-                        <div class="font-mono text-lg font-semibold text-accent-blue">111.13 ms</div>
-                    </div>
-                    <div class="p-3 rounded bg-obsidian border border-obsidian-border">
-                        <div class="font-mono text-[10px] text-text-dim uppercase">Serving VRAM</div>
-                        <div class="font-mono text-lg font-semibold text-text-primary">5.8 GB (AWQ)</div>
-                    </div>
-                </div>
-
-                <div class="flex flex-wrap gap-2 font-mono text-xs pt-2">
-                    <span class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border text-text-muted">PyTorch
-                        2.3</span>
-                    <span
-                        class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border text-text-muted">Qwen2-VL</span>
-                    <span class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border text-text-muted">QLoRA
-                        (NF4)</span>
-                    <span
-                        class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border text-text-muted">Multimodal
-                        DPO</span>
-                    <span
-                        class="px-2.5 py-1 rounded bg-obsidian border border-obsidian-border text-text-muted">AutoAWQ</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECONDARY RESEARCH REPOSITORIES -->
-        <section id="repos" class="space-y-6">
-            <div class="border-b border-obsidian-border pb-4">
-                <span class="font-mono text-xs text-text-dim uppercase tracking-wider block mb-1">// ADDITIONAL PROJECTS
-                    & HACKATHONS</span>
-                <h2 class="font-serif text-3xl text-text-primary">Research & Specialized Microservices</h2>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-6">
-                <!-- DeepFake Detector -->
-                <div
-                    class="bg-obsidian-surface border border-obsidian-border rounded-xl p-5 hover:border-accent-blue/30 transition-all flex flex-col justify-between space-y-4">
-                    <div class="space-y-2">
-                        <div class="flex justify-between items-center font-mono text-xs text-accent-emerald">
-                            <span>95.0% ACCURACY</span>
-                            <span class="text-text-dim">Hackathon</span>
-                        </div>
-                        <h3 class="font-serif text-xl text-text-primary">DeepFake Detection Platform</h3>
-                        <p class="text-xs text-text-muted leading-relaxed font-light">
-                            Multimodal visual verification pipeline combining fine-tuned Vision Transformer (ViT-L/16)
-                            and Hugging Face VideoMAE for spatio-temporal video authentication.
-                        </p>
-                    </div>
-                    <div class="font-mono text-[11px] text-text-dim">#PyTorch #ViT #VideoMAE</div>
-                </div>
-
-                <!-- AI Legal Contract Auditor -->
-                <div
-                    class="bg-obsidian-surface border border-obsidian-border rounded-xl p-5 hover:border-accent-blue/30 transition-all flex flex-col justify-between space-y-4">
-                    <div class="space-y-2">
-                        <div class="flex justify-between items-center font-mono text-xs text-accent-blue">
-                            <span>RAG & NLP</span>
-                            <a href="https://github.com/Aymenrahmanii/Legal_Contract_Auditor_RAG" target="_blank"
-                                class="text-text-dim hover:text-text-primary"><i
-                                    class="fa-brands fa-github text-sm"></i></a>
-                        </div>
-                        <h3 class="font-serif text-xl text-text-primary">AI Legal Contract Auditor</h3>
-                        <p class="text-xs text-text-muted leading-relaxed font-light">
-                            Retrieval-Augmented Generation system parsing complex legal agreements, extracting high-risk
-                            clauses, and outputting structured compliance tables.
-                        </p>
-                    </div>
-                    <div class="font-mono text-[11px] text-text-dim">#RAG #LangChain #ChromaDB</div>
-                </div>
-
-                <!-- Email ML Microservices -->
-                <div
-                    class="bg-obsidian-surface border border-obsidian-border rounded-xl p-5 hover:border-accent-blue/30 transition-all flex flex-col justify-between space-y-4">
-                    <div class="space-y-2">
-                        <div class="flex justify-between items-center font-mono text-xs text-accent-amber">
-                            <span>90% ACC / 91 F1</span>
-                            <a href="https://github.com/Aymenrahmanii/EmailFilter_ML_BackEnd" target="_blank"
-                                class="text-text-dim hover:text-text-primary"><i
-                                    class="fa-brands fa-github text-sm"></i></a>
-                        </div>
-                        <h3 class="font-serif text-xl text-text-primary">Real-Time Email ML Classifier</h3>
-                        <p class="text-xs text-text-muted leading-relaxed font-light">
-                            XGBoost classification model integrated with Spring Boot & FastAPI microservices for
-                            real-time inference and automated workflow routing.
-                        </p>
-                    </div>
-                    <div class="font-mono text-[11px] text-text-dim">#XGBoost #SpringBoot #FastAPI</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- TECHNICAL MATRIX -->
-        <section id="stack" class="space-y-6">
-            <div class="border-b border-obsidian-border pb-4">
-                <span class="font-mono text-xs text-accent-blue uppercase tracking-wider block mb-1">// TECHNICAL
-                    PROFICIENCY</span>
-                <h2 class="font-serif text-3xl text-text-primary">Engineering Capabilities Matrix</h2>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-6">
-                <!-- Box 1 -->
-                <div class="bg-obsidian-surface border border-obsidian-border p-5 rounded-xl space-y-3">
-                    <div class="font-mono text-xs text-accent-blue flex items-center space-x-2">
-                        <i class="fa-solid fa-microchip"></i>
-                        <span>SYSTEMS & INFERENCE ENGINES</span>
-                    </div>
-                    <ul class="space-y-1.5 text-xs font-mono text-text-muted">
-                        <li>• C++17/20 & Native CUDA 12</li>
-                        <li>• TensorRT 10.x & Dynamic Execution</li>
-                        <li>• Pinned CUDA Memory Allocation</li>
-                        <li>• vLLM & PagedAttention Cache</li>
-                        <li>• ONNX Runtime & OpenCV C++</li>
-                    </ul>
-                </div>
-
-                <!-- Box 2 -->
-                <div class="bg-obsidian-surface border border-obsidian-border p-5 rounded-xl space-y-3">
-                    <div class="font-mono text-xs text-accent-emerald flex items-center space-x-2">
-                        <i class="fa-solid fa-brain"></i>
-                        <span>DEEP LEARNING & LLMOPS</span>
-                    </div>
-                    <ul class="space-y-1.5 text-xs font-mono text-text-muted">
-                        <li>• PyTorch 2.3 & Hugging Face</li>
-                        <li>• 4-Bit QLoRA & DPO Preference Alignment</li>
-                        <li>• Outlines / Guided DFA Decoding</li>
-                        <li>• AutoAWQ & Model Quantization</li>
-                        <li>• Redis VSS HNSW Vector Caching</li>
-                    </ul>
-                </div>
-
-                <!-- Box 3 -->
-                <div class="bg-obsidian-surface border border-obsidian-border p-5 rounded-xl space-y-3">
-                    <div class="font-mono text-xs text-accent-amber flex items-center space-x-2">
-                        <i class="fa-solid fa-server"></i>
-                        <span>BACKEND & MLOPS INFRASTRUCTURE</span>
-                    </div>
-                    <ul class="space-y-1.5 text-xs font-mono text-text-muted">
-                        <li>• FastAPI, Flask & gRPC Microservices</li>
-                        <li>• Spring Boot (Java) & PostgreSQL</li>
-                        <li>• Docker, CMake & Linux Administration</li>
-                        <li>• OpenTelemetry & LangFuse Tracing</li>
-                        <li>• DeepEval & Automated Model Evals</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- LeetCode Banner -->
-            <div
-                class="bg-obsidian-surface border border-obsidian-border p-5 rounded-xl flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="space-y-1 text-center md:text-left">
-                    <div class="font-mono text-xs text-accent-amber uppercase">// ALGORITHMIC DISCIPLINE</div>
-                    <h4 class="font-serif text-xl text-text-primary">LeetCode Problem Solving Profile</h4>
-                    <p class="text-xs text-text-muted font-light">Data Structures, Dynamic Programming, Graph Algorithms
-                        & Memory Optimization.</p>
-                </div>
-                <a href="https://leetcode.com/u/luxman251/" target="_blank"
-                    class="px-4 py-2 rounded bg-obsidian border border-accent-amber/40 hover:border-accent-amber text-accent-amber font-mono text-xs transition-all flex items-center space-x-2">
-                    <i class="fa-solid fa-code text-sm"></i>
-                    <span>LeetCode @luxman251 &rarr;</span>
+            <div class="hero-actions">
+                <a href="mailto:aymen.rahmani@esprit.tn" class="btn btn-primary">
+                    <i class="fa-solid fa-paper-plane"></i> Contact Me
+                </a>
+                <a href="https://github.com/Aymenrahmanii" target="_blank" class="btn btn-secondary">
+                    <i class="fa-brands fa-github"></i> GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/aymen-rahmani-97b9b6271/" target="_blank"
+                    class="btn btn-secondary">
+                    <i class="fa-brands fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://aymenrahmanii.github.io/" target="_blank" class="btn btn-secondary">
+                    <i class="fa-solid fa-globe"></i> Website
                 </a>
             </div>
-        </section>
 
-        <!-- CHRONOLOGY & CREDENTIALS -->
-        <section id="timeline" class="grid lg:grid-cols-12 gap-10">
-            <!-- Left: Work & Education -->
-            <div class="lg:col-span-7 space-y-6">
-                <div class="border-b border-obsidian-border pb-4">
-                    <span class="font-mono text-xs text-accent-blue uppercase tracking-wider block mb-1">//
-                        CHRONOLOGY</span>
-                    <h2 class="font-serif text-3xl text-text-primary">Experience & Education</h2>
+            <!-- STAT TICKER -->
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-val">4.06 <span>ms</span></div>
+                    <div class="stat-lbl">End-to-End Latency (246 FPS @ FP16 C++/CUDA)</div>
                 </div>
-
-                <div class="space-y-6 relative pl-6 border-l border-obsidian-border">
-                    <div class="relative group">
-                        <div
-                            class="absolute -left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-accent-blue border-4 border-obsidian">
-                        </div>
-                        <div class="space-y-1">
-                            <div class="flex items-center justify-between">
-                                <h3 class="font-serif text-xl text-text-primary">Computer Vision Intern</h3>
-                                <span class="font-mono text-xs text-accent-blue">Summer 2026</span>
-                            </div>
-                            <p class="font-mono text-xs text-text-dim">Supra Tech & Services · Automated Optical
-                                Inspection</p>
-                            <p class="text-xs text-text-muted leading-relaxed font-light pt-1">
-                                Developed dual-engine AOI combining RT-DETR and PatchCore for micro-scale PCB defect
-                                detection. Optimized loss functions (EIoU + NWD), delivering a +24.15% boost in mAP50:95
-                                (77.76%).
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="relative group">
-                        <div
-                            class="absolute -left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-obsidian-border border-4 border-obsidian">
-                        </div>
-                        <div class="space-y-1">
-                            <div class="flex items-center justify-between">
-                                <h3 class="font-serif text-xl text-text-primary">Machine Learning Intern</h3>
-                                <span class="font-mono text-xs text-text-dim">Summer 2025</span>
-                            </div>
-                            <p class="font-mono text-xs text-text-dim">Web Media International · Email Classification
-                                System</p>
-                            <p class="text-xs text-text-muted leading-relaxed font-light pt-1">
-                                Engineered an XGBoost model achieving 90% accuracy & 91 F1-score. Integrated Spring Boot
-                                microservices with Flask/FastAPI REST endpoints for real-time model inference.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="relative group">
-                        <div
-                            class="absolute -left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-obsidian-border border-4 border-obsidian">
-                        </div>
-                        <div class="space-y-1">
-                            <div class="flex items-center justify-between">
-                                <h3 class="font-serif text-xl text-text-primary">Engineering in Software Engineering
-                                </h3>
-                                <span class="font-mono text-xs text-text-dim">2024 – Expected 2027</span>
-                            </div>
-                            <p class="font-mono text-xs text-text-dim">Esprit School of Engineering · Ariana, Tunis</p>
-                        </div>
-                    </div>
-
-                    <div class="relative group">
-                        <div
-                            class="absolute -left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-obsidian-border border-4 border-obsidian">
-                        </div>
-                        <div class="space-y-1">
-                            <div class="flex items-center justify-between">
-                                <h3 class="font-serif text-xl text-text-primary">Licence in Embedded Systems</h3>
-                                <span class="font-mono text-xs text-text-dim">2021 – 2024</span>
-                            </div>
-                            <p class="font-mono text-xs text-text-dim">Higher Institute of Computer Science (ISIMM) ·
-                                Ariana, Tunis</p>
-                        </div>
-                    </div>
+                <div class="stat-card">
+                    <div class="stat-val">93.0<span>%</span></div>
+                    <div class="stat-lbl">Industrial VQA Accuracy (Fine-Tuned VLM)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val">68.8<span>%</span></div>
+                    <div class="stat-lbl">Prompt Cache Hit Ratio (&gt;65% Cost Reduction)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-val">+24.15<span>%</span></div>
+                    <div class="stat-lbl">mAP₅₀:₉₅ Boost on PCB Defect Detection</div>
                 </div>
             </div>
+        </section>
 
-            <!-- Right: Certifications -->
-            <div class="lg:col-span-5 space-y-6">
-                <div class="border-b border-obsidian-border pb-4">
-                    <span class="font-mono text-xs text-accent-emerald uppercase tracking-wider block mb-1">// VERIFIED
-                        CREDENTIALS</span>
-                    <h2 class="font-serif text-3xl text-text-primary">Certifications & Awards</h2>
-                </div>
+        <!-- FEATURED PROJECTS -->
+        <section id="projects">
+            <div class="section-tag"><i class="fa-solid fa-code-branch"></i> Systems & AI Projects</div>
+            <h2 class="section-title">Featured Engineering Work</h2>
 
-                <div class="space-y-4">
-                    <div class="bg-obsidian-surface border border-obsidian-border p-4 rounded-xl space-y-2">
-                        <div class="flex items-center space-x-2 font-mono text-xs text-accent-emerald font-semibold">
-                            <i class="fa-brands fa-nvidia"></i>
-                            <span>NVIDIA DEEP LEARNING INSTITUTE (DLI)</span>
+            <div class="bento-grid">
+
+                <!-- PROJECT 1: C++/TensorRT -->
+                <article class="project-card card-col-12">
+                    <div>
+                        <div class="project-header">
+                            <span class="project-category">High-Performance Computer Vision & Systems</span>
+                            <span class="project-badge">Open-Source</span>
                         </div>
-                        <ul class="text-xs font-mono text-text-muted space-y-1 list-disc list-inside">
-                            <li>Building Transformer-Based NLP Apps</li>
-                            <li>Rapid App Development with LLMs</li>
-                            <li>LLM Prompt Engineering</li>
+                        <h3 class="project-title">NexusPerceive: High-Throughput C++/TensorRT Vision Engine</h3>
+                        <p class="project-desc">
+                            Zero-copy C++17 inference pipeline leveraging TensorRT 10.x and custom CUDA kernels for
+                            real-time edge computer vision.
+                        </p>
+                        <ul class="project-bullets">
+                            <li>Engineered custom <strong>CUDA preprocessing kernels</strong> (letterboxing,
+                                normalization, NHWC-to-NCHW) and parallel Bitmask IoU GPU Non-Maximum Suppression (NMS).
+                            </li>
+                            <li>Achieved <strong>4.06 ms end-to-end latency (246 FPS @ FP16)</strong> and reduced VRAM
+                                footprint by <strong>45%</strong> compared to PyTorch eager runtime.</li>
                         </ul>
                     </div>
-
-                    <div class="bg-obsidian-surface border border-obsidian-border p-4 rounded-xl space-y-1.5">
-                        <div class="flex items-center space-x-2 font-mono text-xs text-accent-amber font-semibold">
-                            <i class="fa-solid fa-trophy"></i>
-                            <span>AI AD AWARD HACKATHON</span>
-                        </div>
-                        <p class="text-xs text-text-muted font-light">Co-organized by AFI Group & Tunisia Digital Summit
-                            (April 2026).</p>
+                    <div class="tech-stack">
+                        <span class="tech-pill">C++17</span>
+                        <span class="tech-pill">CUDA 12.4</span>
+                        <span class="tech-pill">TensorRT 10.x</span>
+                        <span class="tech-pill">OpenCV C++</span>
+                        <span class="tech-pill">Pinned Memory</span>
+                        <span class="tech-pill">gRPC</span>
+                        <span class="tech-pill">Docker</span>
                     </div>
+                </article>
 
-                    <div class="bg-obsidian-surface border border-obsidian-border p-4 rounded-xl space-y-1.5">
-                        <div class="flex items-center space-x-2 font-mono text-xs text-accent-blue font-semibold">
-                            <i class="fa-solid fa-language"></i>
-                            <span>LANGUAGES & FLUENCY</span>
+                <!-- PROJECT 2: Agentic LLM Engine -->
+                <article class="project-card card-col-6">
+                    <div>
+                        <div class="project-header">
+                            <span class="project-category">LLMOps & Agentic AI</span>
+                            <span class="project-badge">Open-Source</span>
                         </div>
-                        <div class="text-xs font-mono text-text-muted space-y-1">
-                            <div class="flex justify-between"><span>English:</span><span class="text-accent-blue">C1
-                                    Advanced</span></div>
-                            <div class="flex justify-between"><span>German:</span><span class="text-accent-amber">B2
-                                    Upper-Intermediate</span></div>
-                            <div class="flex justify-between"><span>French:</span><span class="text-text-primary">B2
-                                    Professional</span></div>
+                        <h3 class="project-title">NexusAgent-Core: Enterprise Agentic LLM Engine & Semantic Cache</h3>
+                        <p class="project-desc">
+                            Multi-agent orchestration engine wrapping vLLM PagedAttention with LRU-cached Finite State
+                            Automata logit processors.
+                        </p>
+                        <ul class="project-bullets">
+                            <li>Guaranteed <strong>100% JSON schema compliance</strong> across tool dispatches using
+                                Outlines/DFA logit masking.</li>
+                            <li>Implemented Redis VSS HNSW vector indexes for semantic caching, delivering <strong>85 ms
+                                    TTFT</strong> and a <strong>68.8% cache hit ratio</strong> (&gt;65% token cost
+                                reduction).</li>
+                        </ul>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-pill">Python 3.11</span>
+                        <span class="tech-pill">vLLM</span>
+                        <span class="tech-pill">PagedAttention</span>
+                        <span class="tech-pill">Redis VSS</span>
+                        <span class="tech-pill">FastAPI</span>
+                        <span class="tech-pill">DeepEval</span>
+                    </div>
+                </article>
+
+                <!-- PROJECT 3: Multimodal VLM Engine -->
+                <article class="project-card card-col-6">
+                    <div>
+                        <div class="project-header">
+                            <span class="project-category">Multimodal Deep Learning</span>
+                            <span class="project-badge">Open-Source</span>
+                        </div>
+                        <h3 class="project-title">NexusMultimodal-VL: Domain-Specific Fine-Tuned VLM Engine</h3>
+                        <p class="project-desc">
+                            Domain-adapted Vision-Language Model for micro-scale industrial visual question answering
+                            and defect evaluation.
+                        </p>
+                        <ul class="project-bullets">
+                            <li>Fine-tuned Qwen2-VL using <strong>4-bit QLoRA ($r=64, \alpha=128$)</strong> and
+                                Multimodal DPO alignment, boosting inspection accuracy from 62.0% to
+                                <strong>93.0%</strong> and cutting visual hallucination to <strong>1.0%</strong>.</li>
+                            <li>Quantized to 4-bit AWQ and deployed via vLLM async API delivering <strong>111 ms p50
+                                    latency</strong> in a <strong>5.8 GB VRAM footprint</strong>.</li>
+                        </ul>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-pill">PyTorch</span>
+                        <span class="tech-pill">Qwen2-VL</span>
+                        <span class="tech-pill">QLoRA (NF4)</span>
+                        <span class="tech-pill">Multimodal DPO</span>
+                        <span class="tech-pill">AutoAWQ</span>
+                        <span class="tech-pill">vLLM</span>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- PROFESSIONAL EXPERIENCE -->
+        <section id="experience">
+            <div class="section-tag"><i class="fa-solid fa-briefcase"></i> Experience</div>
+            <h2 class="section-title">Professional Experience</h2>
+
+            <div class="timeline">
+
+                <!-- EXP 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-node"></div>
+                    <div class="exp-card">
+                        <div class="exp-header">
+                            <div>
+                                <div class="exp-role">Computer Vision & AI Software Intern</div>
+                                <div class="exp-company">Supra Tech & Services</div>
+                            </div>
+                            <div class="exp-date">Summer 2026</div>
+                        </div>
+                        <ul class="exp-bullets">
+                            <li>Developed a dual-engine Automated Optical Inspection (AOI) system combining
+                                <strong>RT-DETR</strong> (supervised) and <strong>PatchCore</strong> (unsupervised) for
+                                micro-scale PCB defect detection.</li>
+                            <li>Optimized loss functions (EIoU + NWD), delivering a <strong>+24.15% boost in mAP₅₀:₉₅
+                                    (77.76%)</strong>.</li>
+                            <li>Deployed high-throughput multi-threaded REST and WebSocket microservices using FastAPI
+                                and SQLite for real-time production line integration.</li>
+                        </ul>
+                        <div class="tech-stack" style="margin-top: 16px;">
+                            <span class="tech-pill">Python</span>
+                            <span class="tech-pill">C++</span>
+                            <span class="tech-pill">PyTorch</span>
+                            <span class="tech-pill">OpenCV</span>
+                            <span class="tech-pill">FastAPI</span>
+                            <span class="tech-pill">WebSockets</span>
+                            <span class="tech-pill">SQLite</span>
                         </div>
                     </div>
                 </div>
+
+                <!-- EXP 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-node"></div>
+                    <div class="exp-card">
+                        <div class="exp-header">
+                            <div>
+                                <div class="exp-role">Machine Learning Intern</div>
+                                <div class="exp-company">Web Media International</div>
+                            </div>
+                            <div class="exp-date">Summer 2025</div>
+                        </div>
+                        <ul class="exp-bullets">
+                            <li>Preprocessed text data streams and engineered an XGBoost classification system achieving
+                                <strong>90% accuracy and 91 F1-score</strong>.</li>
+                            <li>Integrated REST APIs with Spring Boot and MySQL databases for automated model inference
+                                pipelines.</li>
+                        </ul>
+                        <div class="tech-stack" style="margin-top: 16px;">
+                            <span class="tech-pill">Python</span>
+                            <span class="tech-pill">XGBoost</span>
+                            <span class="tech-pill">Scikit-learn</span>
+                            <span class="tech-pill">Spring Boot</span>
+                            <span class="tech-pill">MySQL</span>
+                            <span class="tech-pill">Flask</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
+
+        <!-- TECHNICAL SKILLS -->
+        <section id="skills">
+            <div class="section-tag"><i class="fa-solid fa-cpu"></i> Technical Capabilities</div>
+            <h2 class="section-title">Skills & Architecture Stack</h2>
+
+            <div class="skills-grid">
+
+                <div class="skill-card">
+                    <div class="skill-card-title">
+                        <i class="fa-solid fa-brain" style="color: var(--primary-indigo);"></i>
+                        <span>Generative AI & LLMOps</span>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">vLLM (PagedAttention)</span>
+                        <span class="skill-tag">Multimodal VLMs (Qwen2-VL)</span>
+                        <span class="skill-tag">4-Bit QLoRA & DPO Alignment</span>
+                        <span class="skill-tag">Redis VSS (HNSW)</span>
+                        <span class="skill-tag">Guided Decoding (Outlines/DFA)</span>
+                        <span class="skill-tag">RAG Pipelines</span>
+                        <span class="skill-tag">Multi-Agent Architecture</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-card-title">
+                        <i class="fa-solid fa-eye" style="color: var(--accent-emerald);"></i>
+                        <span>Computer Vision & Systems</span>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PyTorch 2.3</span>
+                        <span class="skill-tag">CUDA 12.4</span>
+                        <span class="skill-tag">NVIDIA TensorRT 10.x</span>
+                        <span class="skill-tag">Vision Transformers (ViT)</span>
+                        <span class="skill-tag">RT-DETR & PatchCore</span>
+                        <span class="skill-tag">OpenCV C++</span>
+                        <span class="skill-tag">Pinned CUDA Memory</span>
+                        <span class="skill-tag">ONNX Runtime</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-card-title">
+                        <i class="fa-solid fa-chart-line" style="color: var(--accent-orange);"></i>
+                        <span>Core ML & Data Science</span>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">XGBoost</span>
+                        <span class="skill-tag">Time Series (ARIMA/SARIMA)</span>
+                        <span class="skill-tag">Imbalanced Data (SMOTE)</span>
+                        <span class="skill-tag">Automated Eval (DeepEval)</span>
+                        <span class="skill-tag">Feature Engineering</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-card-title">
+                        <i class="fa-solid fa-terminal" style="color: var(--text-primary);"></i>
+                        <span>Software & Deployment</span>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">C++17/20</span>
+                        <span class="skill-tag">Python 3.11</span>
+                        <span class="skill-tag">SQL (PostgreSQL, MySQL)</span>
+                        <span class="skill-tag">FastAPI / Flask</span>
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">gRPC & REST APIs</span>
+                        <span class="skill-tag">Docker & CMake</span>
+                        <span class="skill-tag">Linux Shell / Git</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- EDUCATION & LANGUAGES -->
+        <section id="education">
+            <div class="two-col-grid">
+
+                <!-- EDUCATION -->
+                <div>
+                    <div class="section-tag"><i class="fa-solid fa-graduation-cap"></i> Academic Background</div>
+                    <h2 class="section-title" style="font-size: 1.6rem; margin-bottom: 24px;">Education</h2>
+
+                    <div class="info-card" style="margin-bottom: 16px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                            <strong style="color: var(--text-primary);">Esprit School of Engineering</strong>
+                            <span
+                                style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary);">Expected
+                                2027</span>
+                        </div>
+                        <div style="font-size: 0.88rem; color: var(--primary-indigo); margin-bottom: 4px;">Engineering
+                            in Software Engineering</div>
+                        <div style="font-size: 0.82rem; color: var(--text-secondary);">Master's Level Degree
+                            (Specializing in Software Architecture, AI & Data Science) — Ariana, Tunis</div>
+                    </div>
+
+                    <div class="info-card">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                            <strong style="color: var(--text-primary);">Higher Institute of Computer Science</strong>
+                            <span
+                                style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary);">2021
+                                – 2024</span>
+                        </div>
+                        <div style="font-size: 0.88rem; color: var(--primary-indigo); margin-bottom: 4px;">Licence in
+                            Embedded Systems</div>
+                        <div style="font-size: 0.82rem; color: var(--text-secondary);">Bachelor's Degree in Embedded
+                            Hardware, Electronics, Microcontrollers & C/C++ — Ariana, Tunis</div>
+                    </div>
+                </div>
+
+                <!-- LANGUAGES -->
+                <div>
+                    <div class="section-tag"><i class="fa-solid fa-globe"></i> Global Communication</div>
+                    <h2 class="section-title" style="font-size: 1.6rem; margin-bottom: 24px;">Languages</h2>
+
+                    <div class="info-card">
+                        <div class="lang-item">
+                            <span class="lang-name">English</span>
+                            <span class="lang-badge">C1 Fluent</span>
+                        </div>
+                        <div class="lang-item">
+                            <span class="lang-name">German</span>
+                            <span class="lang-badge">B2 Intermediate</span>
+                        </div>
+                        <div class="lang-item">
+                            <span class="lang-name">French</span>
+                            <span class="lang-badge">B2 Intermediate</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-links">
+                <a href="mailto:aymen.rahmani@esprit.tn" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://github.com/Aymenrahmanii" target="_blank" title="GitHub"><i
+                        class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/aymen-rahmani-97b9b6271/" target="_blank" title="LinkedIn"><i
+                        class="fa-brands fa-linkedin"></i></a>
+                <a href="https://aymenrahmanii.github.io/" target="_blank" title="Portfolio"><i
+                        class="fa-solid fa-globe"></i></a>
+            </div>
+            <p class="footer-copy">Designed with Aura AI Architect · Rahmani Aymen © 2026</p>
+        </footer>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-obsidian-border bg-obsidian py-12">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="space-y-1 text-center md:text-left">
-                <span class="font-serif text-2xl text-text-primary italic">Aymen Rahmani</span>
-                <p class="font-mono text-xs text-text-dim">AI Systems Engineer · Tunis, Tunisia</p>
-            </div>
-
-            <div class="flex items-center space-x-6 text-xs font-mono text-text-muted">
-                <a href="https://github.com/Aymenrahmanii" target="_blank"
-                    class="hover:text-accent-blue transition-colors">GitHub</a>
-                <a href="https://www.linkedin.com/in/aymen-rahmani-97b9b6271/" target="_blank"
-                    class="hover:text-accent-blue transition-colors">LinkedIn</a>
-                <a href="https://leetcode.com/u/luxman251/" target="_blank"
-                    class="hover:text-accent-amber transition-colors">LeetCode</a>
-                <button onclick="copyEmail()" class="hover:text-accent-emerald transition-colors">Email</button>
-            </div>
-
-            <div class="font-mono text-xs text-text-dim">
-                &copy; 2026 Aymen Rahmani.
-            </div>
-        </div>
-    </footer>
-
-    <!-- Micro-Interactions -->
-    <script>
-        function switchConsoleTab(tabId) {
-            const tabs = ['p1', 'p2', 'p3'];
-            tabs.forEach(t => {
-                const btn = document.getElementById(`tab-${t}`);
-                const content = document.getElementById(`console-${t}`);
-
-                if (t === tabId) {
-                    btn.classList.add('text-accent-blue', 'bg-obsidian-surface', 'font-semibold');
-                    btn.classList.remove('text-text-muted');
-                    content.classList.remove('hidden');
-                } else {
-                    btn.classList.remove('text-accent-blue', 'bg-obsidian-surface', 'font-semibold');
-                    btn.classList.add('text-text-muted');
-                    content.classList.add('hidden');
-                }
-            });
-        }
-
-        function copyEmail() {
-            const email = "aymen.rahmani@esprit.tn";
-            navigator.clipboard.writeText(email).then(() => {
-                const copyBtnText = document.getElementById("copy-btn-text");
-                const originalText = copyBtnText.innerText;
-                copyBtnText.innerText = "COPIED TO CLIPBOARD!";
-                copyBtnText.classList.add("text-accent-emerald");
-
-                setTimeout(() => {
-                    copyBtnText.innerText = originalText;
-                    copyBtnText.classList.remove("text-accent-emerald");
-                }, 2000);
-            });
-        }
-    </script>
 </body>
 
 </html>
