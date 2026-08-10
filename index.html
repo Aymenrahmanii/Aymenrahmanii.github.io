@@ -13,6 +13,18 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
 
+    <!-- Meta Descriptions & Open Graph -->
+    <meta name="description" content="Rahmani Aymen — AI & Machine Learning Engineer specializing in Applied AI, High-Performance ML Systems, Generative AI (LLMs/VLMs), and C++/CUDA Computer Vision.">
+    <meta property="og:title" content="Rahmani Aymen — AI & Machine Learning Engineer">
+    <meta property="og:description" content="AI & ML Engineer specializing in High-Performance Computer Vision, Agentic LLM Orchestration, C++/CUDA Systems, and Multimodal Deep Learning.">
+    <meta property="og:image" content="https://aymenrahmanii.github.io/688109292_1305528431190638_5698898415194947296_n.jpg">
+    <meta property="og:url" content="https://aymenrahmanii.github.io/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rahmani Aymen — AI & Machine Learning Engineer">
+    <meta name="twitter:description" content="AI & ML Engineer specializing in High-Performance Computer Vision, Agentic LLM Orchestration, C++/CUDA Systems, and Multimodal Deep Learning.">
+    <meta name="twitter:image" content="https://aymenrahmanii.github.io/688109292_1305528431190638_5698898415194947296_n.jpg">
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -643,6 +655,43 @@
             box-shadow: 0 4px 14px rgba(239, 68, 68, 0.2);
         }
 
+        .project-link-btn.gh {
+            border-color: rgba(99, 102, 241, 0.35);
+            background: rgba(99, 102, 241, 0.08);
+            color: #818cf8;
+        }
+
+        .project-link-btn.gh:hover {
+            background: rgba(99, 102, 241, 0.18);
+            border-color: rgba(99, 102, 241, 0.6);
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.2);
+        }
+
+        .project-filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .filter-btn {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            padding: 6px 16px;
+            border-radius: var(--radius-full);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition-cinematic);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: rgba(99, 102, 241, 0.15);
+            border-color: var(--primary-indigo);
+            color: var(--text-primary);
+        }
+
         /* ==========================================================================
        EXPERIENCE & EDUCATION
        ========================================================================== */
@@ -1111,8 +1160,8 @@
                             class="btn btn-secondary">
                             <i class="fa-brands fa-linkedin"></i> LinkedIn
                         </a>
-                        <a href="https://aymenrahmanii.github.io/" target="_blank" class="btn btn-secondary">
-                            <i class="fa-solid fa-globe"></i> Website
+                        <a href="mailto:aymen.rahmani@esprit.tn?subject=CV%20Request%20-%20Rahmani%20Aymen" class="btn btn-secondary" id="download-cv-btn">
+                            <i class="fa-solid fa-file-arrow-down"></i> Resume / CV
                         </a>
                     </div>
                 </div>
@@ -1155,10 +1204,18 @@
             <div class="section-tag"><i class="fa-solid fa-code-branch"></i> Systems & AI Projects</div>
             <h2 class="section-title">Featured Engineering Work</h2>
 
+            <!-- Interactive Category Filter -->
+            <div class="project-filter-bar">
+                <button class="filter-btn active" data-filter="all">All Systems</button>
+                <button class="filter-btn" data-filter="agentic">Agentic AI & LLMs</button>
+                <button class="filter-btn" data-filter="vision">Computer Vision & C++</button>
+                <button class="filter-btn" data-filter="healthcare">Healthcare AI</button>
+            </div>
+
             <div class="bento-grid">
 
                 <!-- PROJECT 0: NEXUS FX -->
-                <article class="project-card card-col-12">
+                <article class="project-card card-col-12" data-category="agentic vision">
                     <div>
                         <div class="project-header">
                             <span class="project-category">Multi-Agent Microservices & Financial AI</span>
@@ -1179,6 +1236,9 @@
                             <a href="https://www.youtube.com/watch?v=bnlMqNZN-mE&t=2s" target="_blank" rel="noopener noreferrer" class="project-link-btn yt" id="nexusfx-demo-link">
                                 <i class="fa-brands fa-youtube"></i> Watch Video Demo
                             </a>
+                            <a href="https://github.com/Aymenrahmanii" target="_blank" rel="noopener noreferrer" class="project-link-btn gh">
+                                <i class="fa-brands fa-github"></i> Source Code
+                            </a>
                         </div>
                         <div class="tech-stack">
                             <span class="tech-pill">Next.js 15</span>
@@ -1198,7 +1258,7 @@
                 </article>
 
                 <!-- PROJECT 0.5: NEXUS MED CENTER -->
-                <article class="project-card card-col-12">
+                <article class="project-card card-col-12" data-category="healthcare vision agentic">
                     <div>
                         <div class="project-header">
                             <span class="project-category">Multimodal Healthcare AI & Clinical Microservices</span>
@@ -1218,6 +1278,9 @@
                             <a href="https://www.youtube.com/watch?v=O7DVy1KBHZk" target="_blank" rel="noopener noreferrer" class="project-link-btn yt" id="nexusmed-demo-link">
                                 <i class="fa-brands fa-youtube"></i> Watch Video Demo
                             </a>
+                            <a href="https://github.com/Aymenrahmanii" target="_blank" rel="noopener noreferrer" class="project-link-btn gh">
+                                <i class="fa-brands fa-github"></i> Source Code
+                            </a>
                         </div>
                         <div class="tech-stack">
                             <span class="tech-pill">PyTorch</span>
@@ -1236,7 +1299,7 @@
                 </article>
 
                 <!-- PROJECT 1: C++/TensorRT -->
-                <article class="project-card card-col-12">
+                <article class="project-card card-col-12" data-category="vision">
                     <div>
                         <div class="project-header">
                             <span class="project-category">High-Performance Computer Vision & Systems</span>
@@ -1260,6 +1323,9 @@
                             <a href="https://huggingface.co/spaces/Luxman251/NexusPerceive-Engine" target="_blank" rel="noopener noreferrer" class="project-link-btn hf" id="nexusperceive-demo-link">
                                 <i class="fa-solid fa-rocket"></i> Live Demo on HuggingFace
                             </a>
+                            <a href="https://github.com/Aymenrahmanii" target="_blank" rel="noopener noreferrer" class="project-link-btn gh">
+                                <i class="fa-brands fa-github"></i> Source Code
+                            </a>
                         </div>
                         <div class="tech-stack">
                             <span class="tech-pill">C++17</span>
@@ -1274,7 +1340,7 @@
                 </article>
 
                 <!-- PROJECT 2: Agentic LLM Engine -->
-                <article class="project-card card-col-6">
+                <article class="project-card card-col-6" data-category="agentic">
                     <div>
                         <div class="project-header">
                             <span class="project-category">LLMOps & Agentic AI</span>
@@ -1298,6 +1364,9 @@
                             <a href="https://enterprise-agentic-llm-engine-with-custom-evals-guardrails-an8.streamlit.app/" target="_blank" rel="noopener noreferrer" class="project-link-btn" id="nexusagent-demo-link">
                                 <i class="fa-solid fa-rocket"></i> Live Demo on Streamlit
                             </a>
+                            <a href="https://github.com/Aymenrahmanii" target="_blank" rel="noopener noreferrer" class="project-link-btn gh">
+                                <i class="fa-brands fa-github"></i> Source Code
+                            </a>
                         </div>
                         <div class="tech-stack">
                             <span class="tech-pill">Python 3.11</span>
@@ -1311,7 +1380,7 @@
                 </article>
 
                 <!-- PROJECT 3: Multimodal VLM Engine -->
-                <article class="project-card card-col-6">
+                <article class="project-card card-col-6" data-category="vision agentic">
                     <div>
                         <div class="project-header">
                             <span class="project-category">Multimodal Deep Learning</span>
@@ -1331,13 +1400,20 @@
                                     latency</strong> in a <strong>5.8 GB VRAM footprint</strong>.</li>
                         </ul>
                     </div>
-                    <div class="tech-stack">
-                        <span class="tech-pill">PyTorch</span>
-                        <span class="tech-pill">Qwen2-VL</span>
-                        <span class="tech-pill">QLoRA (NF4)</span>
-                        <span class="tech-pill">Multimodal DPO</span>
-                        <span class="tech-pill">AutoAWQ</span>
-                        <span class="tech-pill">vLLM</span>
+                    <div>
+                        <div class="project-links">
+                            <a href="https://github.com/Aymenrahmanii" target="_blank" rel="noopener noreferrer" class="project-link-btn gh">
+                                <i class="fa-brands fa-github"></i> Source Code
+                            </a>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-pill">PyTorch</span>
+                            <span class="tech-pill">Qwen2-VL</span>
+                            <span class="tech-pill">QLoRA (NF4)</span>
+                            <span class="tech-pill">Multimodal DPO</span>
+                            <span class="tech-pill">AutoAWQ</span>
+                            <span class="tech-pill">vLLM</span>
+                        </div>
                     </div>
                 </article>
 
@@ -1611,6 +1687,35 @@
                 }
             });
         }
+
+        // Project Category Filter Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    const category = card.getAttribute('data-category') || '';
+                    if (filter === 'all' || category.includes(filter)) {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 20);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(10px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 200);
+                    }
+                });
+            });
+        });
     </script>
 
 </body>
