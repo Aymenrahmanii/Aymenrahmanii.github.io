@@ -631,6 +631,18 @@
             box-shadow: 0 4px 14px rgba(255, 161, 22, 0.2);
         }
 
+        .project-link-btn.yt {
+            border-color: rgba(239, 68, 68, 0.35);
+            background: rgba(239, 68, 68, 0.08);
+            color: #ef4444;
+        }
+
+        .project-link-btn.yt:hover {
+            background: rgba(239, 68, 68, 0.18);
+            border-color: rgba(239, 68, 68, 0.6);
+            box-shadow: 0 4px 14px rgba(239, 68, 68, 0.2);
+        }
+
         /* ==========================================================================
        EXPERIENCE & EDUCATION
        ========================================================================== */
@@ -1145,6 +1157,46 @@
 
             <div class="bento-grid">
 
+                <!-- PROJECT 0: NEXUS FX -->
+                <article class="project-card card-col-12">
+                    <div>
+                        <div class="project-header">
+                            <span class="project-category">Multi-Agent Microservices & Financial AI</span>
+                            <span class="project-badge">Capstone System</span>
+                        </div>
+                        <h3 class="project-title">NEXUS FX: Multi-Agent Financial Intelligence Platform & Decision Cockpit</h3>
+                        <p class="project-desc">
+                            Production-style containerized microservice ecosystem orchestrating 7 specialized intelligence agents
+                            (Macro, Flow, Technical, Visual, Sentiment, User, Commander) with real-time decision fusion and a grounded conversational AI assistant ("Lulu").
+                        </p>
+                        <ul class="project-bullets">
+                            <li>Engineered <strong>7-agent distributed microservices</strong> (FastAPI, Next.js 15, Supabase, MLflow, Docker Compose) fusing macro forecasts, microstructure indicators, LightGBM sentiment, and ResNet50 visual chart inference (Grad-CAM XAI).</li>
+                            <li>Orchestrated <strong>LLM decision synthesis & conversational AI (Lulu)</strong> with hybrid vector retrieval (pgvector), live telemetry grounding, vLLM/Llama decision narratives, and Stripe billing entitlements.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="project-links">
+                            <a href="https://www.youtube.com/watch?v=bnlMqNZN-mE&t=2s" target="_blank" rel="noopener noreferrer" class="project-link-btn yt" id="nexusfx-demo-link">
+                                <i class="fa-brands fa-youtube"></i> Watch Video Demo
+                            </a>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-pill">Next.js 15</span>
+                            <span class="tech-pill">React 19</span>
+                            <span class="tech-pill">TypeScript</span>
+                            <span class="tech-pill">FastAPI</span>
+                            <span class="tech-pill">Python 3.11</span>
+                            <span class="tech-pill">Supabase / Postgres</span>
+                            <span class="tech-pill">vLLM / Llama</span>
+                            <span class="tech-pill">LightGBM</span>
+                            <span class="tech-pill">ResNet50</span>
+                            <span class="tech-pill">MLflow</span>
+                            <span class="tech-pill">Docker Compose</span>
+                            <span class="tech-pill">Stripe API</span>
+                        </div>
+                    </div>
+                </article>
+
                 <!-- PROJECT 1: C++/TensorRT -->
                 <article class="project-card card-col-12">
                     <div>
@@ -1342,9 +1394,9 @@
                         <span class="skill-tag">vLLM (PagedAttention)</span>
                         <span class="skill-tag">Multimodal VLMs (Qwen2-VL)</span>
                         <span class="skill-tag">4-Bit QLoRA & DPO Alignment</span>
-                        <span class="skill-tag">Redis VSS (HNSW)</span>
+                        <span class="skill-tag">Redis VSS & Supabase pgvector</span>
                         <span class="skill-tag">Guided Decoding (Outlines/DFA)</span>
-                        <span class="skill-tag">RAG Pipelines</span>
+                        <span class="skill-tag">MLflow Observability</span>
                         <span class="skill-tag">Multi-Agent Architecture</span>
                     </div>
                 </div>
@@ -1358,11 +1410,11 @@
                         <span class="skill-tag">PyTorch 2.3</span>
                         <span class="skill-tag">CUDA 12.4</span>
                         <span class="skill-tag">NVIDIA TensorRT 10.x</span>
-                        <span class="skill-tag">Vision Transformers (ViT)</span>
+                        <span class="skill-tag">Vision Transformers & ResNet50</span>
                         <span class="skill-tag">RT-DETR & PatchCore</span>
                         <span class="skill-tag">OpenCV C++</span>
                         <span class="skill-tag">Pinned CUDA Memory</span>
-                        <span class="skill-tag">ONNX Runtime</span>
+                        <span class="skill-tag">ONNX Runtime & Grad-CAM XAI</span>
                     </div>
                 </div>
 
@@ -1373,7 +1425,7 @@
                     </div>
                     <div class="skill-tags">
                         <span class="skill-tag">Scikit-learn</span>
-                        <span class="skill-tag">XGBoost</span>
+                        <span class="skill-tag">XGBoost & LightGBM</span>
                         <span class="skill-tag">Time Series (ARIMA/SARIMA)</span>
                         <span class="skill-tag">Imbalanced Data (SMOTE)</span>
                         <span class="skill-tag">Automated Eval (DeepEval)</span>
@@ -1387,13 +1439,13 @@
                         <span>Software & Deployment</span>
                     </div>
                     <div class="skill-tags">
-                        <span class="skill-tag">C++17/20</span>
-                        <span class="skill-tag">Python 3.11</span>
-                        <span class="skill-tag">SQL (PostgreSQL, MySQL)</span>
-                        <span class="skill-tag">FastAPI / Flask</span>
-                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">Next.js 15 & React 19</span>
+                        <span class="tech-pill" style="display:none"></span>
+                        <span class="skill-tag">C++17/20 & Python 3.11</span>
+                        <span class="skill-tag">PostgreSQL & Supabase</span>
+                        <span class="skill-tag">FastAPI & Spring Boot</span>
                         <span class="skill-tag">gRPC & REST APIs</span>
-                        <span class="skill-tag">Docker & CMake</span>
+                        <span class="skill-tag">Docker Compose & MLflow</span>
                         <span class="skill-tag">Linux Shell / Git</span>
                     </div>
                 </div>
