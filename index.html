@@ -244,6 +244,72 @@
             padding-bottom: 64px;
         }
 
+        .hero-layout {
+            display: flex;
+            align-items: center;
+            gap: 56px;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .hero-photo-wrap {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero-photo-ring {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(135deg, var(--primary-indigo) 0%, var(--accent-emerald) 100%);
+            box-shadow: 0 0 0 6px rgba(99, 102, 241, 0.12), 0 8px 40px rgba(99, 102, 241, 0.25);
+            animation: float-avatar 5s ease-in-out infinite;
+        }
+
+        @keyframes float-avatar {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .hero-photo-ring img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            border: 3px solid var(--bg-dark);
+        }
+
+        .hero-photo-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-align: center;
+            letter-spacing: 0.05em;
+        }
+
+        @media (max-width: 860px) {
+            .hero-layout {
+                flex-direction: column-reverse;
+                gap: 32px;
+                align-items: flex-start;
+            }
+
+            .hero-photo-ring {
+                width: 140px;
+                height: 140px;
+            }
+        }
+
         .hero-status {
             display: inline-flex;
             align-items: center;
@@ -520,6 +586,49 @@
             padding: 4px 10px;
             border-radius: var(--radius-sm);
             border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .project-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .project-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            padding: 5px 12px;
+            border-radius: var(--radius-full);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            background: rgba(16, 185, 129, 0.08);
+            color: var(--accent-emerald);
+            transition: var(--transition-cinematic);
+            cursor: pointer;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .project-link-btn:hover {
+            background: rgba(16, 185, 129, 0.18);
+            border-color: rgba(16, 185, 129, 0.6);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.2);
+        }
+
+        .project-link-btn.hf {
+            border-color: rgba(255, 161, 22, 0.35);
+            background: rgba(255, 161, 22, 0.08);
+            color: var(--accent-orange);
+        }
+
+        .project-link-btn.hf:hover {
+            background: rgba(255, 161, 22, 0.18);
+            border-color: rgba(255, 161, 22, 0.6);
+            box-shadow: 0 4px 14px rgba(255, 161, 22, 0.2);
         }
 
         /* ==========================================================================
@@ -949,46 +1058,63 @@
 
         <!-- HERO SECTION -->
         <section class="hero">
-            <div class="hero-status">
-                <span class="pulse"></span>
-                <span>Seeking AI/ML Internship or Thesis Starting 2026 / 2027</span>
-            </div>
+            <div class="hero-layout">
 
-            <h1 class="hero-name">Rahmani Aymen</h1>
-            <h2 class="hero-role">AI & Machine Learning Engineer</h2>
+                <!-- LEFT: Text content -->
+                <div class="hero-content">
+                    <div class="hero-status">
+                        <span class="pulse"></span>
+                        <span>Seeking AI/ML Internship or Thesis Starting 2026 / 2027</span>
+                    </div>
 
-            <p class="hero-summary">
-                Software and Data Science Engineering student with an Embedded Systems background. Specializing
-                in <strong>Applied AI, High-Performance ML Systems, Generative AI (LLMs/VLMs), and Computer
-                    Vision</strong>. Engineered sub-5ms C++/CUDA inference engines, self-hosted agentic LLM
-                orchestration pipelines, and fine-tuned multimodal vision models.
-            </p>
+                    <h1 class="hero-name">Rahmani Aymen</h1>
+                    <h2 class="hero-role">AI & Machine Learning Engineer</h2>
 
-            <div class="hero-meta">
-                <div class="hero-meta-item">
-                    <i class="fa-solid fa-location-dot" style="color: var(--primary-indigo);"></i>
-                    <span>Open to Relocation / Remote</span>
+                    <p class="hero-summary">
+                        Software and Data Science Engineering student with an Embedded Systems background. Specializing
+                        in <strong>Applied AI, High-Performance ML Systems, Generative AI (LLMs/VLMs), and Computer
+                            Vision</strong>. Engineered sub-5ms C++/CUDA inference engines, self-hosted agentic LLM
+                        orchestration pipelines, and fine-tuned multimodal vision models.
+                    </p>
+
+                    <div class="hero-meta">
+                        <div class="hero-meta-item">
+                            <i class="fa-solid fa-location-dot" style="color: var(--primary-indigo);"></i>
+                            <span>Open to Relocation / Remote</span>
+                        </div>
+                        <div class="hero-meta-item">
+                            <i class="fa-solid fa-language" style="color: var(--primary-indigo);"></i>
+                            <span>EN (C1) · DE (B2) · FR (B2)</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-actions">
+                        <a href="mailto:aymen.rahmani@esprit.tn" class="btn btn-primary">
+                            <i class="fa-solid fa-paper-plane"></i> Contact Me
+                        </a>
+                        <a href="https://github.com/Aymenrahmanii" target="_blank" class="btn btn-secondary">
+                            <i class="fa-brands fa-github"></i> GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/in/aymen-rahmani-97b9b6271/" target="_blank"
+                            class="btn btn-secondary">
+                            <i class="fa-brands fa-linkedin"></i> LinkedIn
+                        </a>
+                        <a href="https://aymenrahmanii.github.io/" target="_blank" class="btn btn-secondary">
+                            <i class="fa-solid fa-globe"></i> Website
+                        </a>
+                    </div>
                 </div>
-                <div class="hero-meta-item">
-                    <i class="fa-solid fa-language" style="color: var(--primary-indigo);"></i>
-                    <span>EN (C1) · DE (B2) · FR (B2)</span>
-                </div>
-            </div>
 
-            <div class="hero-actions">
-                <a href="mailto:aymen.rahmani@esprit.tn" class="btn btn-primary">
-                    <i class="fa-solid fa-paper-plane"></i> Contact Me
-                </a>
-                <a href="https://github.com/Aymenrahmanii" target="_blank" class="btn btn-secondary">
-                    <i class="fa-brands fa-github"></i> GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/aymen-rahmani-97b9b6271/" target="_blank"
-                    class="btn btn-secondary">
-                    <i class="fa-brands fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="https://aymenrahmanii.github.io/" target="_blank" class="btn btn-secondary">
-                    <i class="fa-solid fa-globe"></i> Website
-                </a>
+                <!-- RIGHT: Profile photo -->
+                <div class="hero-photo-wrap">
+                    <div class="hero-photo-ring">
+                        <img src="688109292_1305528431190638_5698898415194947296_n.jpg"
+                             alt="Rahmani Aymen — AI & ML Engineer"
+                             id="hero-profile-photo">
+                    </div>
+                    <span class="hero-photo-label">Rahmani Aymen · Esprit, Ariana</span>
+                </div>
+
             </div>
 
             <!-- STAT TICKER -->
@@ -1039,14 +1165,21 @@
                                 footprint by <strong>45%</strong> compared to PyTorch eager runtime.</li>
                         </ul>
                     </div>
-                    <div class="tech-stack">
-                        <span class="tech-pill">C++17</span>
-                        <span class="tech-pill">CUDA 12.4</span>
-                        <span class="tech-pill">TensorRT 10.x</span>
-                        <span class="tech-pill">OpenCV C++</span>
-                        <span class="tech-pill">Pinned Memory</span>
-                        <span class="tech-pill">gRPC</span>
-                        <span class="tech-pill">Docker</span>
+                    <div>
+                        <div class="project-links">
+                            <a href="https://huggingface.co/spaces/Luxman251/NexusPerceive-Engine" target="_blank" rel="noopener noreferrer" class="project-link-btn hf" id="nexusperceive-demo-link">
+                                <i class="fa-solid fa-rocket"></i> Live Demo on HuggingFace
+                            </a>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-pill">C++17</span>
+                            <span class="tech-pill">CUDA 12.4</span>
+                            <span class="tech-pill">TensorRT 10.x</span>
+                            <span class="tech-pill">OpenCV C++</span>
+                            <span class="tech-pill">Pinned Memory</span>
+                            <span class="tech-pill">gRPC</span>
+                            <span class="tech-pill">Docker</span>
+                        </div>
                     </div>
                 </article>
 
@@ -1070,13 +1203,20 @@
                                 reduction).</li>
                         </ul>
                     </div>
-                    <div class="tech-stack">
-                        <span class="tech-pill">Python 3.11</span>
-                        <span class="tech-pill">vLLM</span>
-                        <span class="tech-pill">PagedAttention</span>
-                        <span class="tech-pill">Redis VSS</span>
-                        <span class="tech-pill">FastAPI</span>
-                        <span class="tech-pill">DeepEval</span>
+                    <div>
+                        <div class="project-links">
+                            <a href="https://enterprise-agentic-llm-engine-with-custom-evals-guardrails-an8.streamlit.app/" target="_blank" rel="noopener noreferrer" class="project-link-btn" id="nexusagent-demo-link">
+                                <i class="fa-solid fa-rocket"></i> Live Demo on Streamlit
+                            </a>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-pill">Python 3.11</span>
+                            <span class="tech-pill">vLLM</span>
+                            <span class="tech-pill">PagedAttention</span>
+                            <span class="tech-pill">Redis VSS</span>
+                            <span class="tech-pill">FastAPI</span>
+                            <span class="tech-pill">DeepEval</span>
+                        </div>
                     </div>
                 </article>
 
