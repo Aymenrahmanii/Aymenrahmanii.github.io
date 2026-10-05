@@ -6,7 +6,7 @@
 <title>Aymen Rahmani · ML Engineer (LLMs, Evaluation, Computer Vision)</title>
 <meta name="description" content="Aymen Rahmani, final-year Software & Data Science engineering student at ESPRIT. LLM/RAG systems with measured evaluation, MLOps, and computer vision. Seeking a 6-month end-of-studies internship from February 2027.">
 <meta property="og:title" content="Aymen Rahmani · ML Engineer">
-<meta property="og:description" content="LLMs & RAG with measured evaluation, MLOps, computer vision. 77.8% mAP50:95 in production inspection, Recall@5 0.94 on a cited RAG assistant. Seeking a PFE from Feb 2027.">
+<meta property="og:description" content="LLMs & RAG with measured evaluation, MLOps, computer vision. 77.8% mAP50:95 in production inspection, 0.93 correctness on an agentic RAG deployed on Azure. Seeking a PFE from Feb 2027.">
 <meta property="og:image" content="https://aymenrahmanii.github.io/688109292_1305528431190638_5698898415194947296_n.jpg">
 <meta property="og:url" content="https://aymenrahmanii.github.io/">
 <meta property="og:type" content="website">
@@ -267,7 +267,7 @@ footer{padding:36px 0 48px;color:var(--ink-3);font-size:.85rem;text-align:center
           <div class="status"><span class="dot" aria-hidden="true"></span>Open to a 6-month PFE / Master's thesis internship · from February 2027</div>
           <h1>Aymen Rahmani</h1>
           <p class="role"><b>ML engineer</b> · LLMs &amp; RAG, evaluation &amp; MLOps, computer vision</p>
-          <p class="lead">Final-year Software &amp; Data Science engineering student at ESPRIT. I build ML systems and <strong>measure them before I trust them</strong>: a production PCB inspection model taken from 53.6% to <strong>77.8% mAP50:95</strong>, a cited RAG assistant evaluated to <strong>Recall@5 0.94</strong>, and a CI release gate that turns tests and security scans into one ship / don't-ship decision.</p>
+          <p class="lead">Final-year Software &amp; Data Science engineering student at ESPRIT. I build ML systems and <strong>measure them before I trust them</strong>: a production PCB inspection model taken from 53.6% to <strong>77.8% mAP50:95</strong>, a cited RAG assistant on Azure whose CI blocks any change that lowers answer quality (<strong>0.93 correctness</strong>), and a release gate that turns tests and security scans into one ship / don't-ship decision.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="mailto:aymen.rahmani@esprit.tn"><i class="fa-solid fa-envelope"></i> Email me</a>
             <a class="btn" href="Aymen_Rahmani_CV_EN.pdf" download><i class="fa-solid fa-file-arrow-down"></i> Download CV</a>
@@ -284,7 +284,7 @@ footer{padding:36px 0 48px;color:var(--ink-3);font-size:.85rem;text-align:center
 
       <div class="metrics" role="list">
         <div class="metric" role="listitem"><div class="v">77.8<small>%</small></div><div class="l">mAP50:95 on PCB defect detection, up from 53.6%</div><div class="src">Internship · Supra Tech</div></div>
-        <div class="metric" role="listitem"><div class="v">0.94</div><div class="l">Recall@5 on a 50-question RAG test set, up from 0.73</div><div class="src">Project · Regulatory RAG</div></div>
+        <div class="metric" role="listitem"><div class="v">0.93</div><div class="l">Answer correctness of an agentic RAG on 60 questions, vs 0.81 baseline</div><div class="src">Project · Regulatory RAG</div></div>
         <div class="metric" role="listitem"><div class="v">91<small>%</small></div><div class="l">F1-score of an email-risk classifier in production</div><div class="src">Internship · Web Media</div></div>
         <div class="metric" role="listitem"><div class="v">30<small> FPS</small></div><div class="l">Real-time inspection served with ONNX and FastAPI</div><div class="src">Internship · Supra Tech</div></div>
       </div>
@@ -326,24 +326,25 @@ footer{padding:36px 0 48px;color:var(--ink-3);font-size:.85rem;text-align:center
 
       <article class="case reveal">
         <div>
-          <div class="case-tag"><span class="chip accent">LLMs &amp; RAG</span><span class="chip">Personal project · 2026</span></div>
-          <h3>Regulatory RAG assistant with a real evaluation harness</h3>
-          <p>A question-answering assistant over GDPR, the EU AI Act, NIS2 and DORA that answers with article-level citations, and a test harness that measures every change.</p>
+          <div class="case-tag"><span class="chip accent">LLMs &amp; RAG</span><span class="chip">Personal project · deployed on Azure · 2026</span></div>
+          <h3>Regulatory RAG assistant: three pipelines, one evaluation gate</h3>
+          <p>A production-style assistant over GDPR, the EU AI Act, NIS2 and DORA that answers with article-level citations. Hybrid RAG, GraphRAG and agentic RAG run behind one streaming API and are scored on the same 60 questions.</p>
           <ul class="bullets">
-            <li><strong>Hybrid retrieval</strong>: dense embeddings + BM25 fused with RRF, then a <strong>cross-encoder reranker</strong>.</li>
-            <li>50 hand-written questions scored on Recall@k, MRR, faithfulness, false refusals and latency, with every run saved and logged.</li>
-            <li>Best setup: <strong>Recall@5 0.94</strong>, <strong>MRR 0.95</strong>, faithfulness 1.00, false refusals 0.02.</li>
-            <li>Cloud version on <strong>Azure AI Search</strong> with keyless auth (Entra ID); infrastructure in <strong>Terraform</strong>; metric code unit-tested.</li>
+            <li><strong>Agentic RAG</strong> (the default) reaches <strong>0.93 correctness</strong> vs 0.81 for hybrid RAG; retrieval tuning (BM25 + dense with RRF, reranking, chunking) took <strong>Recall@5 from 0.73 to 0.94</strong>.</li>
+            <li><strong>CI/CD with an eval gate</strong>: every pull request runs lint, 139 tests, Terraform validation and a live evaluation; quality drops block the merge, and deploys need approval with automatic rollback (GitHub Actions + OIDC).</li>
+            <li><strong>Security</strong>: token auth, document-level security trimming, PII masking, an ingestion quarantine, and <strong>0 of 240 prompt-injection attacks</strong> succeeding against the agent.</li>
+            <li><strong>Operations</strong>: event-driven ingestion (Event Grid, Service Bus, Functions), OpenTelemetry traces in App Insights, about $3.5 per 1,000 requests, load-tested with 0 errors at 10 users.</li>
           </ul>
-          <div class="stack"><span class="chip">sentence-transformers</span><span class="chip">BM25</span><span class="chip">ChromaDB</span><span class="chip">Azure AI Search</span><span class="chip">Azure OpenAI</span><span class="chip">Terraform</span><span class="chip">pytest</span></div>
-          <div class="links"><a class="btn btn-sm" href="https://github.com/Aymenrahmanii/Azure_RAG" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Source code</a></div>
+          <div class="stack"><span class="chip">FastAPI</span><span class="chip">Azure AI Search</span><span class="chip">Azure OpenAI</span><span class="chip">Container Apps</span><span class="chip">Terraform</span><span class="chip">GitHub Actions</span><span class="chip">OpenTelemetry</span><span class="chip">pytest</span></div>
+          <div class="links"><a class="btn btn-sm" href="https://github.com/Aymenrahmanii/Azure_RAG" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Source code &amp; ADRs</a></div>
         </div>
-        <div class="panel" aria-label="Retrieval quality before and after hybrid search and reranking">
-          <h4>Baseline vs final pipeline</h4>
-          <div class="bar-row"><div class="bar-label"><span>Recall@5</span><span>0.73 → 0.94</span></div><div class="bar"><div class="after" style="width:94%"></div><div class="before" style="width:73%"></div></div></div>
-          <div class="bar-row"><div class="bar-label"><span>MRR</span><span>0.72 → 0.95</span></div><div class="bar"><div class="after" style="width:95%"></div><div class="before" style="width:72%"></div></div></div>
-          <div class="legend"><span><i style="background:var(--ink-3)"></i>Dense only</span><span><i style="background:var(--accent)"></i>Hybrid + rerank</span></div>
-          <p class="panel-foot">Honest caveat, also in the repo: the LLM judge is the same model as the generator, so small differences in judged scores are within noise.</p>
+        <div class="panel" aria-label="Answer correctness by pipeline on 60 questions">
+          <h4>Answer correctness · 60 questions</h4>
+          <div class="bar-row"><div class="bar-label"><span>Hybrid RAG</span><span>0.81</span></div><div class="bar"><div class="before" style="width:81%"></div></div></div>
+          <div class="bar-row"><div class="bar-label"><span>GraphRAG</span><span>0.82</span></div><div class="bar"><div class="before" style="width:82%"></div></div></div>
+          <div class="bar-row"><div class="bar-label"><span>Router</span><span>0.90</span></div><div class="bar"><div class="before" style="width:90%"></div></div></div>
+          <div class="bar-row"><div class="bar-label"><span><strong>Agentic RAG (default)</strong></span><span>0.93</span></div><div class="bar"><div class="after" style="width:93%"></div></div></div>
+          <p class="panel-foot">Kept in the repo on purpose: the knowledge graph did not help, the router did not pay for its cost, and the LLM judge shares the generator's model, so absolute scores are optimistic.</p>
         </div>
       </article>
 
@@ -424,12 +425,12 @@ footer{padding:36px 0 48px;color:var(--ink-3);font-size:.85rem;text-align:center
           <div class="result">Linear SVM on 7 features: <b>F1 0.95</b>, ROC-AUC 0.995.</div>
           <div class="foot"><span class="tags">scikit-learn · SHAP · Streamlit</span><a href="https://github.com/Aymenrahmanii/ML_Breast_Cancer" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Code</a></div>
         </article>
-        <article class="card wip reveal" data-c="llm">
-          <div class="kicker">In progress · team of 6</div>
-          <h3>CrisisLink: multimodal disaster triage</h3>
-          <p>I own the triage agent that turns citizen photos and voice notes into P1–P4 rescue tickets, fusing vision, speech and RAG outputs as typed JSON, with guardrails and human escalation.</p>
-          <div class="result">Evaluation on a labelled set of reports is under way; results will be posted here.</div>
-          <div class="foot"><span class="tags">LangChain · n8n · Qdrant · VLMs</span><span class="tags">Coming soon</span></div>
+        <article class="card reveal" data-c="llm vision">
+          <div class="kicker">Team of 6 · final stage · 2026</div>
+          <h3>CrisisLink: multimodal flood triage</h3>
+          <p>A Telegram bot takes a photo, a voice note (Tunisian Derja, French or English), text or GPS. Vision and distress agents feed a master triage agent (P1–P4, my part) with RAG on Qdrant, then a deterministic safety guardrail and human escalation. 53-node n8n workflow.</p>
+          <div class="result">Distress extractor <b>89% → 100%</b> field accuracy; multilingual RAG Hit@3 <b>0.80 → 0.90</b>; <b>0</b> critical photos under-graded.</div>
+          <div class="foot"><span class="tags">n8n · Groq · Gemini · Qdrant · e5</span><a href="https://github.com/Aymenrahmanii/CrisisLink-5DS/tree/develop" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Code</a></div>
         </article>
       </div>
     </div>
@@ -479,10 +480,10 @@ footer{padding:36px 0 48px;color:var(--ink-3);font-size:.85rem;text-align:center
         <h2>What I work with</h2>
       </div>
       <div class="skills">
-        <div class="skill reveal"><h3><i class="fa-solid fa-comments"></i>LLMs &amp; agents</h3><div class="stack"><span class="chip">LangChain</span><span class="chip">LangGraph</span><span class="chip">Hybrid RAG</span><span class="chip">Reranking</span><span class="chip">MCP</span><span class="chip">Multi-agent systems</span><span class="chip">Prompt engineering</span><span class="chip">Ollama</span><span class="chip">n8n</span></div></div>
-        <div class="skill reveal"><h3><i class="fa-solid fa-ruler-combined"></i>Evaluation</h3><div class="stack"><span class="chip">Recall@k · MRR</span><span class="chip">LLM-as-a-judge</span><span class="chip">mAP · F1 · ROC/PR-AUC</span><span class="chip">Cross-validation</span><span class="chip">Error analysis</span><span class="chip">Drift (KS, PSI)</span><span class="chip">Grad-CAM · SHAP</span></div></div>
+        <div class="skill reveal"><h3><i class="fa-solid fa-comments"></i>LLMs &amp; agents</h3><div class="stack"><span class="chip">LangChain</span><span class="chip">LangGraph</span><span class="chip">Hybrid RAG</span><span class="chip">Agentic RAG</span><span class="chip">GraphRAG</span><span class="chip">Reranking</span><span class="chip">MCP</span><span class="chip">Multi-agent systems</span><span class="chip">Prompt engineering</span><span class="chip">Ollama</span><span class="chip">n8n</span></div></div>
+        <div class="skill reveal"><h3><i class="fa-solid fa-ruler-combined"></i>Evaluation</h3><div class="stack"><span class="chip">Recall@k · MRR</span><span class="chip">LLM-as-a-judge</span><span class="chip">mAP · F1 · ROC/PR-AUC</span><span class="chip">Cross-validation</span><span class="chip">Error analysis</span><span class="chip">CI eval gates</span><span class="chip">Prompt-injection tests</span><span class="chip">Drift (KS, PSI)</span><span class="chip">Grad-CAM · SHAP</span></div></div>
         <div class="skill reveal"><h3><i class="fa-solid fa-eye"></i>Computer vision</h3><div class="stack"><span class="chip">PyTorch</span><span class="chip">RT-DETR</span><span class="chip">PatchCore</span><span class="chip">ViT</span><span class="chip">DenseNet (2D/3D)</span><span class="chip">OpenCV</span><span class="chip">SimpleITK</span><span class="chip">ONNX</span></div></div>
-        <div class="skill reveal"><h3><i class="fa-solid fa-gears"></i>MLOps &amp; cloud</h3><div class="stack"><span class="chip">MLflow</span><span class="chip">Docker</span><span class="chip">GitHub Actions</span><span class="chip">FastAPI</span><span class="chip">Azure</span><span class="chip">Terraform</span><span class="chip">Kafka</span><span class="chip">gRPC</span></div></div>
+        <div class="skill reveal"><h3><i class="fa-solid fa-gears"></i>MLOps &amp; cloud</h3><div class="stack"><span class="chip">MLflow</span><span class="chip">Docker</span><span class="chip">GitHub Actions</span><span class="chip">FastAPI</span><span class="chip">Azure</span><span class="chip">Terraform</span><span class="chip">OpenTelemetry</span><span class="chip">Kafka</span><span class="chip">gRPC</span></div></div>
         <div class="skill reveal"><h3><i class="fa-solid fa-chart-column"></i>Data</h3><div class="stack"><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">scikit-learn</span><span class="chip">XGBoost</span><span class="chip">LightGBM</span><span class="chip">SQL</span><span class="chip">PostgreSQL / PostGIS</span><span class="chip">Qdrant</span></div></div>
         <div class="skill reveal"><h3><i class="fa-solid fa-code"></i>Languages</h3><div class="stack"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">C++</span><span class="chip">TypeScript</span></div></div>
       </div>
