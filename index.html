@@ -237,6 +237,10 @@ h4{font:700 1rem/1.3 var(--body)}
 .bg dd.when{color:var(--ink-3);white-space:nowrap;text-align:right}
 .bg dd.wide{grid-column:1/-1}
 .skills > div{grid-template-columns:150px minmax(0,1fr) !important}
+.bg .full{grid-column:1/-1}
+.bg.certs{grid-template-columns:repeat(3,minmax(0,1fr))}
+.certs h3{font-size:1.15rem}
+.certs dt{font-weight:500}
 
 /* Evidence register */
 .reg{counter-reset:none;display:grid;gap:0}
@@ -266,6 +270,7 @@ footer{padding:26px 0 44px;color:var(--ink-3);font-size:.9rem}
   .sec-grid{grid-template-columns:minmax(0,1fr)}
   .sec-head{position:static}
   .bench{grid-template-columns:minmax(0,1fr)}
+  .bg.certs{grid-template-columns:repeat(2,minmax(0,1fr))}
   .rows li{grid-template-columns:minmax(0,1fr) auto}
   .rows .res{grid-column:1/-1;grid-row:2}
   .block{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -285,7 +290,7 @@ footer{padding:26px 0 44px;color:var(--ink-3);font-size:.9rem}
   .gate td.st{padding-right:14px}
   .gate td.ref,.gate td.st{width:auto}
   .verdict{flex-direction:column;align-items:flex-start}
-  .bg{grid-template-columns:minmax(0,1fr)}
+  .bg,.bg.certs{grid-template-columns:minmax(0,1fr)}
   .skills > div{grid-template-columns:minmax(0,1fr) !important}
   .claims tbody th{width:42%}
   .flow .agents{grid-template-columns:minmax(0,1fr)}
@@ -309,6 +314,7 @@ footer{padding:26px 0 44px;color:var(--ink-3);font-size:.9rem}
         <li><a href="#experience">Experience</a></li>
         <li><a href="#bench">In progress</a></li>
         <li><a href="#background">Background</a></li>
+        <li><a href="#certifications">Certifications</a></li>
         <li><a href="#evidence">Evidence</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -727,33 +733,89 @@ footer{padding:26px 0 44px;color:var(--ink-3);font-size:.9rem}
         <dl>
           <div><dt>ESPRIT School of Engineering</dt><dd class="when">2024 to 2027</dd><dd class="wide">Engineering degree (master's level), Software and Data Science. Fourth year: 15.22/20, ranked 6th of 36, passed with honours.<a class="b" href="#e17" data-tip="Transcript, on request" aria-label="Evidence 17">17</a></dd></div>
           <div><dt>Higher Institute of Computer Science (ISI)</dt><dd class="when">2021 to 2024</dd><dd class="wide">Bachelor's degree (licence) in Embedded Systems.</dd></div>
+          <div><dt>MASSAI AI Summer School</dt><dd class="when">Jun 2025</dd><dd class="wide">Mediterranean and African Summer School on AI, at ESPRIT, 30 hours.</dd></div>
         </dl>
       </div>
       <div>
         <h3>Languages</h3>
         <dl>
-          <div><dt>English</dt><dd class="when">C1, certified</dd></div>
+          <div><dt>English</dt><dd class="when">C1</dd><dd class="wide">Certificate of English Language, Imperial English UK, Oct 2025</dd></div>
           <div><dt>French</dt><dd class="when">B2</dd></div>
-          <div><dt>German</dt><dd class="when">B1 to B2, TestDaF</dd></div>
+          <div><dt>German</dt><dd class="when">B1 to B2</dd><dd class="wide">TestDaF, Goethe-Institut, Jul 2024</dd></div>
           <div><dt>Arabic</dt><dd class="when">Native</dd></div>
         </dl>
       </div>
-      <div>
-        <h3>Certifications</h3>
-        <dl>
-          <div><dt>AWS Certified ML Engineer, Associate</dt><dd class="when">exam Dec 2026</dd><dd class="wide">In preparation. AWS Academy Cloud Foundations completed, November 2026.</dd></div>
-          <div><dt>NVIDIA Deep Learning Institute</dt><dd class="when">2025 to 2026</dd><dd class="wide">Deep learning fundamentals, transformer-based NLP, LLM evaluation and customization, prompt engineering, rapid LLM app development, anomaly detection.</dd></div>
-          <div><dt>Anthropic, Claude Academy</dt><dd class="when">Nov 2026</dd><dd class="wide">Model Context Protocol, Claude Code, Claude with Amazon Bedrock, Claude on Google Cloud, human-agent teams.</dd></div>
-          <div><dt>MASSAI AI Summer School</dt><dd class="when">Jun 2025</dd><dd class="wide">Mediterranean and African Summer School on AI at ESPRIT, 30 hours.</dd></div>
-        </dl>
-      </div>
-      <div>
+      <div class="full">
         <h3>What I work with</h3>
         <dl class="skills">
           <div><dt>LLMs and agents</dt><dd>LangChain, LangGraph, MCP, hybrid RAG, GraphRAG, agentic RAG, tool calling, n8n, Ollama</dd></div>
           <div><dt>Evaluation and safety</dt><dd>Recall@k, MRR, faithfulness, LLM-as-a-judge, CI eval gates, prompt-injection testing, PII masking</dd></div>
           <div><dt>ML and data</dt><dd>Python, PyTorch, Transformers, scikit-learn, XGBoost, pandas, SQL, PostgreSQL, Qdrant</dd></div>
           <div><dt>Deployment</dt><dd>FastAPI, Docker, GitHub Actions, Azure, Terraform, OpenTelemetry, Langfuse, MLflow, Kafka</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="sec" id="certifications">
+  <div class="wrap sec-grid">
+    <div class="sec-head">
+      <h2>Certifications</h2>
+      <p>All 23, grouped by issuer, with the LLM and agent work first. The two language certificates are under Languages. Credential IDs can be checked on <a class="text-link" href="https://www.linkedin.com/in/aymen-rahmanii/details/certifications/" target="_blank" rel="noopener">LinkedIn</a>.</p>
+    </div>
+    <div class="bg certs">
+      <div>
+        <h3>Anthropic, Claude Academy</h3>
+        <dl>
+          <div><dt>Introduction to Model Context Protocol</dt><dd class="when">Nov 2026</dd></div>
+          <div><dt>Claude Code 101</dt><dd class="when">Nov 2026</dd></div>
+          <div><dt>Building effective human-agent teams</dt><dd class="when">Nov 2026</dd></div>
+          <div><dt>Claude with Amazon Bedrock</dt><dd class="when">Nov 2026</dd></div>
+          <div><dt>Claude on Google Cloud</dt><dd class="when">Nov 2026</dd></div>
+        </dl>
+      </div>
+      <div>
+        <h3>NVIDIA Deep Learning Institute</h3>
+        <dl>
+          <div><dt>Evaluation and Light Customization of Large Language Models</dt><dd class="when">Jun 2025</dd></div>
+          <div><dt>Building LLM Applications with Prompt Engineering</dt><dd class="when">Jun 2025</dd></div>
+          <div><dt>Rapid Application Development with LLMs</dt><dd class="when">Jun 2025</dd></div>
+          <div><dt>Building Transformer-Based NLP Applications</dt><dd class="when">Jun 2025</dd></div>
+          <div><dt>Fundamentals of Deep Learning</dt><dd class="when">Feb 2026</dd></div>
+          <div><dt>Applications of AI for Anomaly Detection</dt><dd class="when">Oct 2026</dd></div>
+        </dl>
+      </div>
+      <div>
+        <h3>365 Data Science</h3>
+        <dl>
+          <div><dt>Evaluating AI Agents: From Metrics to Real-World Impact</dt><dd class="when">Nov 2026</dd></div>
+          <div><dt>Intro to AI Agents and Agentic AI</dt><dd class="when">Nov 2026</dd></div>
+          <div><dt>AI Model Deployment on AWS</dt><dd class="when">Nov 2026</dd></div>
+        </dl>
+      </div>
+      <div>
+        <h3>Amazon Web Services</h3>
+        <dl>
+          <div><dt>AWS Certified Machine Learning Engineer, Associate</dt><dd class="when">exam Dec 2026</dd><dd class="wide">In preparation, not yet earned.</dd></div>
+          <div><dt>AWS Academy Cloud Foundations</dt><dd class="when">Nov 2026</dd></div>
+        </dl>
+      </div>
+      <div>
+        <h3>IBM</h3>
+        <dl>
+          <div><dt>Data Science 101</dt><dd class="when">Oct 2025</dd></div>
+          <div><dt>Data Science Foundations</dt><dd class="when">Oct 2025</dd></div>
+          <div><dt>Data Science Methodology</dt><dd class="when">Oct 2025</dd></div>
+          <div><dt>Data Science Tools</dt><dd class="when">Oct 2025</dd></div>
+        </dl>
+      </div>
+      <div>
+        <h3>Kaggle</h3>
+        <dl>
+          <div><dt>Intro to Machine Learning</dt><dd class="when">Oct 2025</dd></div>
+          <div><dt>Python</dt><dd class="when">Sep 2025</dd></div>
         </dl>
       </div>
     </div>
